@@ -1,0 +1,62 @@
+{
+  "_README": "Paste this into Wix Studio -> Pages -> Hallucinogens page -> SEO (gear) -> Advanced SEO -> Structured Data Markup -> Add new markup. Do NOT leave it inside the HTML embed (schema inside an iframe is not read for this URL). Keep the FAQ Q&A text identical to the visible FAQ section, and update 'lastReviewed' when you edit the page. Verify with Google's Rich Results Test after publishing.",
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalWebPage",
+      "@id": "https://www.launchtowellness.com/what-we-treat/substance-use-treatment/hallucinogens#webpage",
+      "url": "https://www.launchtowellness.com/what-we-treat/substance-use-treatment/hallucinogens",
+      "name": "Hallucinogen Misuse Treatment (LSD, Psilocybin, PCP, Ketamine) — Launch To Wellness",
+      "description": "Treatment for hallucinogen misuse — LSD, psilocybin, PCP, ketamine & DMT. Learn the risks, HPPD, and how hallucinogens differ from therapeutic psychedelics.",
+      "inLanguage": "en-US",
+      "about": { "@type": "MedicalCondition", "name": "Hallucinogen Use Disorder" },
+      "lastReviewed": "2026-06-07",
+      "provider": {
+        "@type": "MedicalOrganization",
+        "name": "Launch To Wellness",
+        "url": "https://www.launchtowellness.com",
+        "telephone": "+1-424-327-4040",
+        "address": { "@type": "PostalAddress", "addressRegion": "CA", "addressCountry": "US" }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.launchtowellness.com/home" },
+        { "@type": "ListItem", "position": 2, "name": "What We Treat", "item": "https://www.launchtowellness.com/what-we-treat/" },
+        { "@type": "ListItem", "position": 3, "name": "Substance Use", "item": "https://www.launchtowellness.com/what-we-treat/substance-use-treatment" },
+        { "@type": "ListItem", "position": 4, "name": "Hallucinogens" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are hallucinogens addictive?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Classic psychedelics like LSD rarely cause physical dependence, but ketamine and PCP can drive compulsive use — and any hallucinogen can become psychologically entangled with escape and avoidance." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is HPPD?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Hallucinogen Persisting Perception Disorder — ongoing visual disturbances (halos, trails, static) and flashbacks that persist after use stops. It’s treatable with professional support." }
+        },
+        {
+          "@type": "Question",
+          "name": "Aren’t psychedelics used in therapy now?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Clinical research uses screened patients, controlled doses, and trained clinicians in monitored settings. Recreational use has none of those safeguards and carries real risks." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can one bad trip cause lasting problems?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For some people, yes — particularly anxiety, panic symptoms, or perceptual changes. These respond well to treatment." }
+        },
+        {
+          "@type": "Question",
+          "name": "When does hallucinogen use need treatment?",
+          "acceptedAnswer": { "@type": "Answer", "text": "When use is escalating, interfering with daily life, worsening mental health, or you’ve tried to stop and couldn’t. A confidential assessment is the easiest way to find out." }
+        }
+      ]
+    }
+  ]
+}
