@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#2782B2;--blue-deep:#1F6A92;--blue-tint:#F2F8FB;
+  --navy:#143247;--navy-soft:#2C4A5E;
+  --glass-2:rgba(255,255,255,0.74);--glass-brd:rgba(255,255,255,0.9);
+  --shadow-glass:0 14px 44px -22px rgba(20,50,71,0.24);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ff-display:"Fraunces",Georgia,serif;
+  --ff-body:"Nunito Sans",-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--ff-body);color:var(--navy);background:transparent;-webkit-font-smoothing:antialiased;line-height:1.6;}
+.sec-band{position:relative;}
+.sec-band::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--blue-tint) 0%,rgba(242,248,251,0) 100%);pointer-events:none;}
+.sec{position:relative;max-width:1300px;margin:0 auto;padding:clamp(40px,4.6vw,72px) clamp(20px,5vw,72px);}
+.split{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,4vw,60px);align-items:start;}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-deep);margin-bottom:14px;}
+.kicker::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--blue);}
+h2{font-family:var(--ff-display);font-weight:600;font-size:clamp(26px,3.1vw,38px);line-height:1.08;letter-spacing:-.025em;color:var(--navy);margin-bottom:14px;}
+.lead{font-size:clamp(15px,1.45vw,17px);line-height:1.7;color:var(--navy-soft);}
+.lead+.lead{margin-top:12px;}
+.chips{display:flex;flex-wrap:wrap;gap:10px;padding-top:clamp(20px,3vw,40px);}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--glass-2);border:1px solid var(--glass-brd);box-shadow:var(--shadow-glass);border-radius:50px;padding:9px 18px;font-weight:800;font-size:13px;color:var(--navy);opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease);}
+.chip.in{opacity:1;transform:none;}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);}
+.chip:nth-child(1){transition-delay:.03s}.chip:nth-child(2){transition-delay:.07s}.chip:nth-child(3){transition-delay:.11s}.chip:nth-child(4){transition-delay:.15s}.chip:nth-child(5){transition-delay:.19s}.chip:nth-child(6){transition-delay:.23s}
+@media(max-width:900px){.split{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;}.chip{opacity:1!important;transform:none!important;}}
+</style>
+</head>
+<body>
+<div class="sec-band">
+  <section class="sec">
+    <div class="split">
+      <div>
+        <span class="kicker">Withdrawal & Recovery</span>
+        <h2>Withdrawal is safer — and easier — with support</h2>
+        <p class="lead">Most classic hallucinogens don't cause physical withdrawal, but stopping heavy use — especially ketamine or PCP — can bring cravings, low mood, anxiety, sleep problems, and lingering perceptual changes.</p>
+        <p class="lead">Treatment focuses on psychological recovery: stabilizing anxiety and mood, addressing HPPD symptoms when present, and treating the underlying reasons use became compulsive.</p>
+      </div>
+      <div>
+        <div class="chips">
+          <span class="chip">Cravings (ketamine, PCP)</span>
+          <span class="chip">Anxiety</span>
+          <span class="chip">Low mood</span>
+          <span class="chip">Sleep problems</span>
+          <span class="chip">Flashbacks</span>
+          <span class="chip">Perceptual disturbances</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  const chips=document.querySelectorAll('.chip');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -8% 0px'});
+    chips.forEach(n=>io.observe(n));
+  }else{chips.forEach(n=>n.classList.add('in'));}
+</script>
+</body>
+</html>

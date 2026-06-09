@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#2782B2;--blue-deep:#1F6A92;--blue-bright:#4FA9D6;--blue-soft:#E8F1F7;
+  --navy:#143247;--navy-2:#0F2535;--navy-soft:#2C4A5E;
+  --orange:#E8A15B;
+  --glass:rgba(255,255,255,0.55);--glass-2:rgba(255,255,255,0.74);--glass-brd:rgba(255,255,255,0.9);
+  --shadow-glass:0 14px 44px -22px rgba(20,50,71,0.24);--shadow-glass-hover:0 22px 60px -24px rgba(20,50,71,0.32);
+  --ease:cubic-bezier(.22,.61,.36,1);--r-md:20px;
+  --ff-display:"Fraunces",Georgia,serif;
+  --ff-body:"Nunito Sans",-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--ff-body);color:var(--navy);background:transparent;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;}
+.hero{position:relative;max-width:1300px;margin:0 auto;padding:clamp(40px,5vw,78px) clamp(20px,5vw,72px) clamp(48px,5vw,80px);overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-280px;right:-200px;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(79,169,214,.20),rgba(79,169,214,.06) 45%,transparent 70%);filter:blur(44px);pointer-events:none;z-index:0;}
+.hero::after{content:"";position:absolute;bottom:-320px;left:-220px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(232,161,91,.12),transparent 68%);filter:blur(52px);pointer-events:none;z-index:0;}
+.inner{position:relative;z-index:1;}
+.top-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:clamp(30px,3.8vw,54px);}
+.crumb{font-weight:700;font-size:12.5px;letter-spacing:.04em;color:#6E8597;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.crumb a{color:#6E8597;text-decoration:none;transition:color .3s;}
+.crumb a:hover{color:var(--blue);}
+.crumb .sep{opacity:.5;}
+.crumb .here{color:var(--navy);font-weight:800;}
+.brand-mark{font-weight:800;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--navy-soft);white-space:nowrap;}
+.grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,0.98fr);gap:clamp(34px,4.5vw,70px);align-items:center;}
+.clip{clip-path:inset(0 0 100% 0);opacity:0;transition:clip-path .55s var(--ease),opacity .55s var(--ease);}
+.clip.in{clip-path:inset(0 0 0 0);opacity:1;}
+.c1{transition-delay:.05s;}.c2{transition-delay:.12s;}.c3{transition-delay:.19s;}
+.tier-tag{display:inline-flex;align-items:center;gap:9px;background:var(--glass-2);backdrop-filter:blur(12px);border:1px solid var(--glass-brd);border-radius:50px;padding:7px 16px 7px 9px;margin-bottom:26px;}
+.tier-tag .tt-ic{width:26px;height:26px;border-radius:50%;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;}
+.tier-tag .tt-ic svg{width:15px;height:15px;stroke:var(--blue-deep);stroke-width:2;fill:none;}
+.tier-tag .tt-t{font-weight:800;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--navy);}
+h1{font-family:var(--ff-display);font-weight:600;font-size:clamp(40px,6.4vw,78px);line-height:.94;letter-spacing:-.04em;color:var(--navy);margin-bottom:26px;max-width:13ch;}
+h1 .hl{color:var(--blue);font-style:italic;font-weight:500;letter-spacing:-.025em;}
+.subline{font-size:clamp(15.5px,1.55vw,18px);line-height:1.66;color:var(--navy-soft);max-width:528px;margin-bottom:34px;}
+.cta-row{display:flex;gap:11px;flex-wrap:wrap;align-items:center;}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--ff-body);font-weight:800;font-size:14px;padding:13px 24px;border-radius:50px;text-decoration:none;cursor:pointer;transition:background .3s,color .3s,transform .3s;}
+.btn-primary{background:var(--navy);color:#fff;border:1px solid var(--navy);}
+.btn-primary:hover{background:var(--blue-deep);border-color:var(--blue-deep);transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:var(--navy);border:1px solid rgba(20,50,71,.22);}
+.btn-secondary:hover{background:rgba(20,50,71,.04);border-color:var(--navy);transform:translateY(-1px);}
+.btn svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.2;fill:none;transition:transform .3s;}
+.btn:hover svg{transform:translateX(3px);}
+.bento{display:grid;grid-template-columns:1.35fr 1fr;grid-template-rows:auto auto auto;gap:14px;}
+.tile{position:relative;overflow:hidden;background:var(--glass);backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--glass-brd);border-radius:var(--r-md);box-shadow:var(--shadow-glass);padding:20px;opacity:0;transform:translateY(20px) scale(.97);transition:opacity .6s var(--ease),transform .6s var(--ease),box-shadow .4s;}
+.tile.in{opacity:1;transform:none;}
+.tile::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0) 38%);}
+.tile>*{position:relative;z-index:1;}
+.tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-glass-hover);}
+.tile .t-ic{width:36px;height:36px;border-radius:11px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;margin-bottom:13px;transition:transform .4s,background .4s;}
+.tile:hover .t-ic{transform:rotate(-8deg) scale(1.08);background:var(--blue);}
+.tile:hover .t-ic svg{stroke:#fff;}
+.tile .t-ic svg{width:19px;height:19px;stroke:var(--blue-deep);stroke-width:2;fill:none;transition:stroke .4s;}
+.tile .t-k{font-family:var(--ff-display);font-weight:600;font-size:clamp(17px,1.9vw,21px);line-height:1.02;color:var(--navy);letter-spacing:-.015em;}
+.tile .t-l{font-weight:700;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#6E8597;margin-top:6px;}
+.tile.feature{grid-column:1;grid-row:1 / span 2;padding:24px;display:flex;flex-direction:column;}
+.feature .f-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:auto;}
+.feature .f-label{font-weight:800;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#6E8597;}
+.feature .f-tag{font-weight:800;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-deep);background:var(--blue-soft);padding:4px 10px;border-radius:50px;}
+.feature .f-cap{font-family:var(--ff-display);font-weight:600;font-size:19px;line-height:1.1;color:var(--navy);letter-spacing:-.01em;margin-top:18px;}
+.feature .f-cap span{display:block;font-family:var(--ff-body);font-weight:700;font-size:11.5px;color:#6E8597;text-transform:none;letter-spacing:0;margin-top:4px;}
+.wave{position:relative;height:96px;margin:14px 0 6px;}
+.wave svg{width:100%;height:100%;overflow:visible;}
+.tile.t-accred{grid-column:2;grid-row:1;}
+.tile.t-levels{grid-column:2;grid-row:2;}
+.tile.t-insurance{grid-column:1 / -1;grid-row:3;display:flex;align-items:center;gap:16px;padding:18px 22px;}
+.t-insurance .t-ic{margin-bottom:0;}
+.t-insurance .ins-txt .t-k{font-size:clamp(15px,1.6vw,18px);}
+.check-draw{stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .6s var(--ease) 1s;}
+.tile.t-insurance.in .check-draw{stroke-dashoffset:0;}
+.tile.feature{transition-delay:.05s;}.tile.t-accred{transition-delay:.22s;}.tile.t-levels{transition-delay:.34s;}.tile.t-insurance{transition-delay:.5s;}
+.hl-wavy{fill:none;stroke:var(--orange);stroke-width:2.2;stroke-linecap:round;opacity:0;}
+.feature.in .v1{animation:hlIn .6s var(--ease) .6s forwards,hlOut .8s var(--ease) 1.9s forwards;}
+.feature.in .v2{animation:hlIn .6s var(--ease) .8s forwards,hlOut .8s var(--ease) 2.1s forwards;}
+.feature.in .v3{animation:hlIn .6s var(--ease) 1s forwards,hlOut .8s var(--ease) 2.3s forwards;}
+@keyframes hlIn{to{opacity:.55;}}
+@keyframes hlOut{to{opacity:0;}}
+.hl-flat{stroke:var(--blue);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:360;stroke-dashoffset:360;}
+.feature.in .f1{transition:stroke-dashoffset 1s var(--ease) 2.2s;stroke-dashoffset:0;}
+.feature.in .f2{transition:stroke-dashoffset 1s var(--ease) 2.4s;stroke-dashoffset:0;}
+.feature.in .f3{transition:stroke-dashoffset 1s var(--ease) 2.6s;stroke-dashoffset:0;}
+.hl-lens{fill:none;stroke:var(--blue-deep);stroke-width:2.6;opacity:0;transform-box:fill-box;transform-origin:center;}
+.feature.in .hl-lens{animation:hlFocus 1s var(--ease) 3.3s forwards;}
+@keyframes hlFocus{0%{opacity:0;transform:scale(1.8);}100%{opacity:1;transform:scale(1);}}
+@media(max-width:900px){.grid{grid-template-columns:1fr;gap:34px;}.bento{order:2;}}
+@media(max-width:520px){.bento{grid-template-columns:1fr;}.tile.feature,.tile.t-accred,.tile.t-levels,.tile.t-insurance{grid-column:1;grid-row:auto;}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}.clip,.tile{opacity:1!important;transform:none!important;clip-path:none!important;}.check-draw{stroke-dashoffset:0!important;}}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="inner">
+    <div class="top-row">
+      <nav class="crumb"><a href="https://www.launchtowellness.com/home">Home</a><span class="sep">›</span><a href="https://www.launchtowellness.com/what-we-treat/">What We Treat</a><span class="sep">›</span><a href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment">Substance Use</a><span class="sep">›</span><span class="here">Hallucinogens</span></nav>
+      <span class="brand-mark">Launch to Wellness</span>
+    </div>
+    <div class="grid">
+      <div class="copy">
+        <span class="tier-tag clip"><span class="tt-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.8"/></svg></span><span class="tt-t">Hallucinogens · PHP & IOP</span></span>
+        <h1 class="clip c1">Hallucinogen misuse treatment that helps life <span class="hl">come back into focus.</span></h1>
+        <p class="subline clip c2">LSD, psilocybin, PCP, ketamine, and DMT can distort perception long after the trip ends. Launch To Wellness treats hallucinogen misuse through PHP, IOP, and outpatient care — addressing the anxiety, flashbacks (HPPD), and disorientation it can leave behind.</p>
+        <div class="cta-row clip c3"><a href="https://www.launchtowellness.com/admissions/verify-insurance" class="btn btn-primary">Verify Insurance <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a><a href="tel:424-327-4040" class="btn btn-secondary">Contact Admissions</a></div>
+      </div>
+      <div class="bento">
+        <div class="tile feature clip">
+          <div class="f-head"><span class="f-label">Distortion to Clarity</span><span class="f-tag">Grounding</span></div>
+          <div class="wave"><svg viewBox="0 0 360 96" preserveAspectRatio="none">
+            <path class="hl-wavy v1" d="M0,28 Q30,12 60,28 T120,28 T180,28 T240,28 T300,28 T360,28"/>
+            <path class="hl-wavy v2" d="M0,48 Q30,66 60,48 T120,48 T180,48 T240,48 T300,48 T360,48"/>
+            <path class="hl-wavy v3" d="M0,68 Q30,54 60,68 T120,68 T180,68 T240,68 T300,68 T360,68"/>
+            <line class="hl-flat f1" x1="0" y1="28" x2="360" y2="28"/>
+            <line class="hl-flat f2" x1="0" y1="48" x2="360" y2="48"/>
+            <line class="hl-flat f3" x1="0" y1="68" x2="360" y2="68"/>
+            <circle class="hl-lens" cx="300" cy="48" r="14"/>
+          </svg></div>
+          <div class="f-cap">Back into focus<span>The waves settle — and the world holds still again.</span></div>
+        </div>
+        <div class="tile t-accred clip">
+          <span class="t-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <div class="t-k">Joint Commission</div><div class="t-l">Gold Seal Accredited</div>
+        </div>
+        <div class="tile t-levels clip">
+          <span class="t-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.8"/></svg></span>
+          <div class="t-k">LSD · Psilocybin · PCP</div><div class="t-l">Ketamine · DMT</div>
+        </div>
+        <a class="tile t-insurance clip" href="https://www.launchtowellness.com/admissions/verify-insurance" style="text-decoration:none;">
+          <span class="t-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path class="check-draw" d="M20 6 9 17l-5-5"/></svg></span>
+          <div class="ins-txt"><div class="t-k">Most major insurance accepted</div><div class="t-l">Free, confidential benefits check</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  const items=document.querySelectorAll('.clip,.tile');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -8% 0px'});
+    items.forEach(n=>{const r=n.getBoundingClientRect();if(r.top<window.innerHeight)n.classList.add('in');else io.observe(n);});
+    setTimeout(()=>document.querySelectorAll('.clip').forEach(n=>n.classList.add('in')),500);
+  }else{items.forEach(n=>n.classList.add('in'));}
+</script>
+</body>
+</html>

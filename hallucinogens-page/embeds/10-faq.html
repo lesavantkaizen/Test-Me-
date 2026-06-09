@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#2782B2;--blue-deep:#1F6A92;--blue-soft:#E8F1F7;
+  --navy:#143247;--navy-soft:#2C4A5E;
+  --glass:rgba(255,255,255,0.55);--glass-brd:rgba(255,255,255,0.9);
+  --shadow-glass:0 14px 44px -22px rgba(20,50,71,0.24);
+  --ease:cubic-bezier(.22,.61,.36,1);--r-sm:14px;
+  --ff-display:"Fraunces",Georgia,serif;
+  --ff-body:"Nunito Sans",-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--ff-body);color:var(--navy);background:transparent;-webkit-font-smoothing:antialiased;line-height:1.6;}
+.sec{max-width:1300px;margin:0 auto;padding:clamp(40px,4.6vw,72px) clamp(20px,5vw,72px);}
+.sec-head{margin-bottom:clamp(22px,2.6vw,34px);}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-deep);margin-bottom:14px;}
+.kicker::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--blue);}
+h2{font-family:var(--ff-display);font-weight:600;font-size:clamp(26px,3.1vw,38px);line-height:1.08;letter-spacing:-.025em;color:var(--navy);margin-bottom:14px;}
+.faq-list{display:grid;gap:12px;max-width:880px;}
+.faq-item{background:var(--glass);backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--glass-brd);border-radius:var(--r-sm);box-shadow:var(--shadow-glass);overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .55s var(--ease),transform .55s var(--ease);}
+.faq-item.in{opacity:1;transform:none;}
+.faq-item:nth-child(2){transition-delay:.07s}.faq-item:nth-child(3){transition-delay:.14s}.faq-item:nth-child(4){transition-delay:.21s}.faq-item:nth-child(5){transition-delay:.28s}
+.faq-item summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;padding:18px 22px;font-family:var(--ff-display);font-weight:600;font-size:16.5px;letter-spacing:-.01em;color:var(--navy);}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary .fx{flex:none;width:26px;height:26px;border-radius:50%;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;transition:transform .35s var(--ease),background .35s var(--ease);}
+.faq-item summary .fx svg{width:13px;height:13px;stroke:var(--blue-deep);stroke-width:2.4;fill:none;transition:stroke .35s var(--ease);}
+.faq-item[open] summary .fx{transform:rotate(45deg);background:var(--blue);}
+.faq-item[open] summary .fx svg{stroke:#fff;}
+.faq-item .fa{padding:0 22px 20px;font-size:14.5px;line-height:1.68;color:var(--navy-soft);max-width:70ch;}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;}.faq-item{opacity:1!important;transform:none!important;}}
+</style>
+</head>
+<body>
+<section class="sec">
+  <div class="sec-head">
+    <span class="kicker">FAQ</span>
+    <h2>Common questions, answered</h2>
+  </div>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Are hallucinogens addictive?<span class="fx"><svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+      <div class="fa">Classic psychedelics like LSD rarely cause physical dependence, but ketamine and PCP can drive compulsive use — and any hallucinogen can become psychologically entangled with escape and avoidance.</div>
+    </details>
+    <details class="faq-item">
+      <summary>What is HPPD?<span class="fx"><svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+      <div class="fa">Hallucinogen Persisting Perception Disorder — ongoing visual disturbances (halos, trails, static) and flashbacks that persist after use stops. It's treatable with professional support.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Aren't psychedelics used in therapy now?<span class="fx"><svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+      <div class="fa">Clinical research uses screened patients, controlled doses, and trained clinicians in monitored settings. Recreational use has none of those safeguards and carries real risks.</div>
+    </details>
+    <details class="faq-item">
+      <summary>Can one bad trip cause lasting problems?<span class="fx"><svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+      <div class="fa">For some people, yes — particularly anxiety, panic symptoms, or perceptual changes. These respond well to treatment.</div>
+    </details>
+    <details class="faq-item">
+      <summary>When does hallucinogen use need treatment?<span class="fx"><svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
+      <div class="fa">When use is escalating, interfering with daily life, worsening mental health, or you've tried to stop and couldn't. A confidential assessment is the easiest way to find out.</div>
+    </details>
+  </div>
+</section>
+<script>
+  const items=document.querySelectorAll('.faq-item');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -8% 0px'});
+    items.forEach(n=>io.observe(n));
+  }else{items.forEach(n=>n.classList.add('in'));}
+</script>
+</body>
+</html>

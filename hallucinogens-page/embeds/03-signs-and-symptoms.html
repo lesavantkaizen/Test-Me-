@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#2782B2;--blue-deep:#1F6A92;--blue-bright:#4FA9D6;--blue-soft:#E8F1F7;--blue-tint:#F2F8FB;
+  --navy:#143247;--navy-soft:#2C4A5E;
+  --glass:rgba(255,255,255,0.55);--glass-brd:rgba(255,255,255,0.9);
+  --shadow-glass:0 14px 44px -22px rgba(20,50,71,0.24);--shadow-glass-hover:0 22px 60px -24px rgba(20,50,71,0.32);
+  --ease:cubic-bezier(.22,.61,.36,1);--r-md:20px;
+  --ff-display:"Fraunces",Georgia,serif;
+  --ff-body:"Nunito Sans",-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--ff-body);color:var(--navy);background:transparent;-webkit-font-smoothing:antialiased;line-height:1.6;}
+.sec-band{position:relative;}
+.sec-band::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--blue-tint) 0%,rgba(242,248,251,0) 100%);pointer-events:none;}
+.sec{position:relative;max-width:1300px;margin:0 auto;padding:clamp(40px,4.6vw,72px) clamp(20px,5vw,72px);}
+.sec-head{margin-bottom:clamp(22px,2.6vw,34px);}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-deep);margin-bottom:14px;}
+.kicker::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--blue);}
+h2{font-family:var(--ff-display);font-weight:600;font-size:clamp(26px,3.1vw,38px);line-height:1.08;letter-spacing:-.025em;color:var(--navy);margin-bottom:14px;}
+.gcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.gcard{position:relative;overflow:hidden;background:var(--glass);backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--glass-brd);border-radius:var(--r-md);box-shadow:var(--shadow-glass);padding:22px;opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease),box-shadow .4s;}
+.gcard::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0) 38%);}
+.gcard>*{position:relative;z-index:1;}
+.gcard.in{opacity:1;transform:none;}
+.gcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-glass-hover);}
+.gcard:nth-child(1){transition-delay:.04s}.gcard:nth-child(2){transition-delay:.1s}.gcard:nth-child(3){transition-delay:.16s}
+.g-ic{width:38px;height:38px;border-radius:12px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px;transition:transform .4s,background .4s;}
+.gcard:hover .g-ic{transform:rotate(-8deg) scale(1.08);background:var(--blue);}
+.gcard:hover .g-ic svg{stroke:#fff;}
+.g-ic svg{width:19px;height:19px;stroke:var(--blue-deep);stroke-width:2;fill:none;transition:stroke .4s;}
+.g-t{font-family:var(--ff-display);font-weight:600;font-size:18px;letter-spacing:-.015em;line-height:1.15;color:var(--navy);margin-bottom:8px;}
+.g-list{list-style:none;margin-top:10px;display:grid;gap:7px;}
+.g-list li{position:relative;padding-left:20px;font-size:13.5px;line-height:1.5;color:var(--navy-soft);font-weight:600;}
+.g-list li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--blue-bright);}
+@media(max-width:900px){.gcards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.gcards{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;}.gcard{opacity:1!important;transform:none!important;}}
+</style>
+</head>
+<body>
+<div class="sec-band">
+  <section class="sec">
+    <div class="sec-head">
+      <span class="kicker">Signs & Symptoms</span>
+      <h2>Signs of hallucinogen use</h2>
+    </div>
+    <div class="gcards">
+      <div class="gcard">
+        <span class="g-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2.5 6L13 5l2.5 7H22"/></svg></span>
+        <div class="g-t">Physical Symptoms</div>
+        <ul class="g-list">
+          <li>Dilated pupils</li>
+          <li>Elevated heart rate and blood pressure</li>
+          <li>Impaired coordination</li>
+          <li>Numbness or detachment (dissociatives)</li>
+          <li>Nausea</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <span class="g-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 0 7 4.5v.55A3.5 3.5 0 0 0 4 8.5c0 .64.17 1.23.47 1.74A3.5 3.5 0 0 0 3 13.5 3.5 3.5 0 0 0 6.5 17H7v1.5A2.5 2.5 0 0 0 9.5 21h.5V2h-.5Z"/><path d="M14.5 2A2.5 2.5 0 0 1 17 4.5v.55a3.5 3.5 0 0 1 3 3.45c0 .64-.17 1.23-.47 1.74A3.5 3.5 0 0 1 21 13.5 3.5 3.5 0 0 1 17.5 17H17v1.5a2.5 2.5 0 0 1-2.5 2.5H14V2h.5Z"/></svg></span>
+        <div class="g-t">Psychological Symptoms</div>
+        <ul class="g-list">
+          <li>Visual or auditory distortions</li>
+          <li>Altered sense of time</li>
+          <li>Confusion or disorientation</li>
+          <li>Panic or paranoia during "bad trips"</li>
+          <li>Detachment from reality</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <span class="g-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></svg></span>
+        <div class="g-t">Behavioral Symptoms</div>
+        <ul class="g-list">
+          <li>Impaired judgment and risky behavior</li>
+          <li>Long unexplained absences</li>
+          <li>Declining performance</li>
+          <li>Using in escalating amounts (ketamine, PCP)</li>
+          <li>Withdrawal from usual activities</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  const cards=document.querySelectorAll('.gcard');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -8% 0px'});
+    cards.forEach(n=>io.observe(n));
+  }else{cards.forEach(n=>n.classList.add('in'));}
+</script>
+</body>
+</html>
