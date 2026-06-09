@@ -89,9 +89,12 @@ titles and FAQ questions are `<h3>`.
 
 ## Quick wins beyond the restructure
 
-- **H1 carries no keyword.** Current: *"When perception bends, life follows. We help
-  it come back into focus."* Keep the voice but work "hallucinogen" in, or ensure the
-  §02 H2/intro carries "hallucinogen misuse treatment" prominently.
+- **H1 now keyword-optimized** (applied): *"Hallucinogen misuse treatment that helps
+  life come back into focus."* — leads with the primary keyword, keeps the brand
+  motif. The hero subline was also rewritten to name the brand + PHP/IOP/OP care
+  levels + HPPD. Alternates if you prefer a different tone:
+  - *"When perception bends — compassionate hallucinogen misuse treatment"*
+  - *"Hallucinogen addiction & misuse treatment in California"* (adds local intent)
 - **Title tag is ~86 chars** — likely truncated in SERPs. A tighter variant is in
   `seo/meta-tags.md`.
 - **Add an OG image** (1200×630) — none exists; share CTR suffers without one.
