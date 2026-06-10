@@ -184,9 +184,9 @@ class LTWHeader extends HTMLElement {
     <div class="wrap">
       <div class="left"><span class="dot"></span>Joint Commission Accredited &nbsp;·&nbsp; Woodland Hills, CA</div>
       <div class="right">
-        <a class="util" href="/admissions/professional-referrals">For Referrals</a>
+        <a class="util" href="https://www.launchtowellness.com/admissions/professional-referrals">For Referrals</a>
         <span class="vsep util"></span>
-        <a class="util" href="/for-families">For Families</a>
+        <a class="util" href="https://www.launchtowellness.com/for-families">For Families</a>
         <span class="vsep"></span>
         <a class="tel" href="tel:14243274040">Call (424) 327-4040</a>
       </div>
@@ -211,8 +211,8 @@ class LTWHeader extends HTMLElement {
           <button class="navbtn" data-panel="admissions">Admissions <svg class="chev" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></button>
         </nav>
         <div class="cta-group">
-          <a class="ghost" href="/admissions/verify-insurance">Verify Insurance</a>
-          <a class="solid" href="/admissions">Get Help Now</a>
+          <a class="ghost" href="https://www.launchtowellness.com/admissions/verify-insurance">Verify Insurance</a>
+          <a class="solid" href="https://www.launchtowellness.com/admissions">Get Help Now</a>
           <button class="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
         </div>
       </div>
@@ -222,79 +222,79 @@ class LTWHeader extends HTMLElement {
   <div class="panelzone">
     <div class="wrap">
       <div class="panel" data-for="about"><div class="panel-card">
-        <a class="overview" href="/about"><span class="ot">About Overview <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="od">Our mission, clinical team, and trauma-informed approach to care.</span></a>
+        <a class="overview" href="https://www.launchtowellness.com/about"><span class="ot">About Overview <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="od">Our mission, clinical team, and trauma-informed approach to care.</span></a>
         <div class="grid c2">
-          <a class="plink" href="/about/ourstory-mission"><span class="t">Our Story &amp; Mission</span><span class="d">Why we exist</span></a>
-          <a class="plink" href="/about/meet-the-clinical-team"><span class="t">Clinical Team</span><span class="d">Meet our experts</span></a>
-          <a class="plink" href="/about/treatment-philosophy-approach"><span class="t">Our Approach</span><span class="d">Treatment philosophy</span></a>
-          <a class="plink" href="/about/accreditation-licensing"><span class="t">Accreditation</span><span class="d">Licensing &amp; standards</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/about/ourstory-mission"><span class="t">Our Story &amp; Mission</span><span class="d">Why we exist</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/about/meet-the-clinical-team"><span class="t">Clinical Team</span><span class="d">Meet our experts</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/about/treatment-philosophy-approach"><span class="t">Our Approach</span><span class="d">Treatment philosophy</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/about/accreditation-licensing"><span class="t">Accreditation</span><span class="d">Licensing &amp; standards</span></a>
         </div>
       </div></div>
 
       <div class="panel" data-for="programs"><div class="panel-card">
-        <a class="overview" href="/programs"><span class="ot">Programs Overview <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="od">Levels of care tailored to where you are in recovery.</span></a>
+        <a class="overview" href="https://www.launchtowellness.com/programs"><span class="ot">Programs Overview <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="od">Levels of care tailored to where you are in recovery.</span></a>
         <div class="grid c2">
-          <a class="plink" href="/programs/partial-hospitalization-program-php"><span class="t">PHP</span><span class="d">Partial hospitalization</span></a>
-          <a class="plink" href="/programs/intensive-outpatient-program-iop"><span class="t">IOP</span><span class="d">Intensive outpatient</span></a>
-          <a class="plink" href="/programs/outpatient-program"><span class="t">Outpatient</span><span class="d">Flexible OP care</span></a>
-          <a class="plink" href="/programs/virtual-iop-california"><span class="t">Virtual IOP</span><span class="d">Telehealth, CA-wide</span></a>
-          <a class="plink" href="/programs/mental-health-diversion"><span class="t">MH Diversion</span><span class="d">Court-involved care</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/programs/partial-hospitalization-program-php"><span class="t">PHP</span><span class="d">Partial hospitalization</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/programs/intensive-outpatient-program-iop"><span class="t">IOP</span><span class="d">Intensive outpatient</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/programs/outpatient-program"><span class="t">Outpatient</span><span class="d">Flexible OP care</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/programs/virtual-iop-california"><span class="t">Virtual IOP</span><span class="d">Telehealth, CA-wide</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/programs/mental-health-diversion"><span class="t">MH Diversion</span><span class="d">Court-involved care</span></a>
         </div>
       </div></div>
 
       <div class="panel" data-for="treat"><div class="panel-card">
-        <a class="overview" href="/what-we-treat"><span class="ot">What We Treat Overview <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="od">Specialized care for mental health, substance use, eating disorders &amp; co-occurring conditions.</span></a>
+        <a class="overview" href="https://www.launchtowellness.com/what-we-treat"><span class="ot">What We Treat Overview <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="od">Specialized care for mental health, substance use, eating disorders &amp; co-occurring conditions.</span></a>
         <div class="grid c4">
           <div class="gcol">
             <div class="h5">Mental Health</div>
-            <a class="plink" href="/what-we-treat/mental-health-treatment/anxiety-treatment-los-angeles"><span class="t">Anxiety</span></a>
-            <a class="plink" href="/what-we-treat/mental-health-treatment/depression-treatment-los-angeles"><span class="t">Depression</span></a>
-            <a class="plink" href="/what-we-treat/mental-health-treatment/ptsd-treatment"><span class="t">PTSD</span></a>
-            <a class="plink" href="/what-we-treat/mental-health-treatment/adhd-treatment"><span class="t">ADHD</span></a>
-            <a class="plink" href="/what-we-treat/mental-health-treatment/bipolar-disorder-treatment"><span class="t">Bipolar</span></a>
-            <a class="plink" href="/what-we-treat/mental-health-treatment/what-is-ocd"><span class="t">OCD</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/anxiety-treatment-los-angeles"><span class="t">Anxiety</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/depression-treatment-los-angeles"><span class="t">Depression</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/ptsd-treatment"><span class="t">PTSD</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/adhd-treatment"><span class="t">ADHD</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/bipolar-disorder-treatment"><span class="t">Bipolar</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/what-is-ocd"><span class="t">OCD</span></a>
           </div>
           <div class="gcol">
             <div class="h5">Substance Use</div>
-            <a class="plink" href="/what-we-treat/substance-use-treatment/alcohol-addiction-treatment"><span class="t">Alcohol</span></a>
-            <a class="plink" href="/what-we-treat/substance-use-treatment/opioid-addiction-treatment"><span class="t">Opioids</span></a>
-            <a class="plink" href="/what-we-treat/substance-use-treatment/stimulant-addiction-treatment"><span class="t">Stimulants</span></a>
-            <a class="plink" href="/what-we-treat/substance-use-treatment/cocaine-crack-addiction-treatment"><span class="t">Cocaine &amp; Crack</span></a>
-            <a class="plink" href="/what-we-treat/substance-use-treatment/prescription-drug-addiction-treatment"><span class="t">Prescription Drugs</span></a>
-            <a class="plink" href="/what-we-treat/substance-use-treatment"><span class="t">View All →</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment/alcohol-addiction-treatment"><span class="t">Alcohol</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment/opioid-addiction-treatment"><span class="t">Opioids</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment/stimulant-addiction-treatment"><span class="t">Stimulants</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment/cocaine-crack-addiction-treatment"><span class="t">Cocaine &amp; Crack</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment/prescription-drug-addiction-treatment"><span class="t">Prescription Drugs</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment"><span class="t">View All →</span></a>
           </div>
           <div class="gcol">
             <div class="h5">Eating Disorders</div>
-            <a class="plink" href="/what-we-treat/eating-disorders"><span class="t">Overview</span></a>
-            <a class="plink" href="/what-we-treat/eating-disorders/anorexia"><span class="t">Anorexia</span></a>
-            <a class="plink" href="/what-we-treat/eating-disorders/binge-eating-disorder"><span class="t">Binge Eating</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/eating-disorders"><span class="t">Overview</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/eating-disorders/anorexia"><span class="t">Anorexia</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/eating-disorders/binge-eating-disorder"><span class="t">Binge Eating</span></a>
           </div>
           <div class="gcol">
             <div class="h5">Dual Diagnosis</div>
-            <a class="plink" href="/what-we-treat/dual-diagnosis-treatment"><span class="t">Overview</span><span class="d">Co-occurring care</span></a>
+            <a class="plink" href="https://www.launchtowellness.com/what-we-treat/dual-diagnosis-treatment"><span class="t">Overview</span><span class="d">Co-occurring care</span></a>
           </div>
         </div>
       </div></div>
 
       <div class="panel" data-for="services"><div class="panel-card">
-        <a class="overview" href="/therapies-services"><span class="ot">Services Overview <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="od">Therapies and wraparound support across your whole recovery.</span></a>
+        <a class="overview" href="https://www.launchtowellness.com/therapies-services"><span class="ot">Services Overview <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="od">Therapies and wraparound support across your whole recovery.</span></a>
         <div class="grid c2">
-          <a class="plink" href="/therapies-services/individual-therapy"><span class="t">Individual Therapy</span><span class="d">1:1 sessions</span></a>
-          <a class="plink" href="/therapies-services/group-therapy"><span class="t">Group Therapy</span><span class="d">Peer healing</span></a>
-          <a class="plink" href="/therapies-services/family-therapy"><span class="t">Family Therapy</span><span class="d">Whole-system care</span></a>
-          <a class="plink" href="/therapies-services/psychiatry-medication-management"><span class="t">Psychiatry</span><span class="d">Medication support</span></a>
-          <a class="plink" href="/therapies-services/sober-living-support"><span class="t">Sober Living</span><span class="d">Structured housing</span></a>
-          <a class="plink" href="/therapies-services/aftercare-continuing-care"><span class="t">Aftercare</span><span class="d">Continuing care</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/therapies-services/individual-therapy"><span class="t">Individual Therapy</span><span class="d">1:1 sessions</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/therapies-services/group-therapy"><span class="t">Group Therapy</span><span class="d">Peer healing</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/therapies-services/family-therapy"><span class="t">Family Therapy</span><span class="d">Whole-system care</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/therapies-services/psychiatry-medication-management"><span class="t">Psychiatry</span><span class="d">Medication support</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/therapies-services/sober-living-support"><span class="t">Sober Living</span><span class="d">Structured housing</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/therapies-services/aftercare-continuing-care"><span class="t">Aftercare</span><span class="d">Continuing care</span></a>
         </div>
       </div></div>
 
       <div class="panel" data-for="admissions"><div class="panel-card">
-        <a class="overview" href="/admissions"><span class="ot">Admissions Overview <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="od">Start the process — most clients begin within 24–48 hours.</span></a>
+        <a class="overview" href="https://www.launchtowellness.com/admissions"><span class="ot">Admissions Overview <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="od">Start the process — most clients begin within 24–48 hours.</span></a>
         <div class="grid c2">
-          <a class="plink" href="/admissions/how-admissions-works"><span class="t">How Admissions Works</span><span class="d">Step by step</span></a>
-          <a class="plink" href="/admissions/verify-insurance"><span class="t">Verify Insurance</span><span class="d">Free benefits check</span></a>
-          <a class="plink" href="/admissions/what-to-expect"><span class="t">What to Expect</span><span class="d">Your first days</span></a>
-          <a class="plink" href="/admissions/professional-referrals"><span class="t">Professional Referrals</span><span class="d">Attorneys, therapists, case mgrs</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/admissions/how-admissions-works"><span class="t">How Admissions Works</span><span class="d">Step by step</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/admissions/verify-insurance"><span class="t">Verify Insurance</span><span class="d">Free benefits check</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/admissions/what-to-expect"><span class="t">What to Expect</span><span class="d">Your first days</span></a>
+          <a class="plink" href="https://www.launchtowellness.com/admissions/professional-referrals"><span class="t">Professional Referrals</span><span class="d">Attorneys, therapists, case mgrs</span></a>
         </div>
       </div></div>
     </div>
@@ -305,71 +305,71 @@ class LTWHeader extends HTMLElement {
       <ul class="mnav">
         <li><button class="macc" aria-expanded="false">About <svg class="micon" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg></button>
           <div class="msub"><div class="msub-inner">
-            <a href="/about" style="color:var(--blue);font-weight:800">About Overview →</a>
-            <a href="/about/ourstory-mission">Our Story &amp; Mission</a>
-            <a href="/about/meet-the-clinical-team">Clinical Team</a>
-            <a href="/about/treatment-philosophy-approach">Our Approach</a>
-            <a href="/about/accreditation-licensing">Accreditation</a>
+            <a href="https://www.launchtowellness.com/about" style="color:var(--blue);font-weight:800">About Overview →</a>
+            <a href="https://www.launchtowellness.com/about/ourstory-mission">Our Story &amp; Mission</a>
+            <a href="https://www.launchtowellness.com/about/meet-the-clinical-team">Clinical Team</a>
+            <a href="https://www.launchtowellness.com/about/treatment-philosophy-approach">Our Approach</a>
+            <a href="https://www.launchtowellness.com/about/accreditation-licensing">Accreditation</a>
           </div></div></li>
         <li><button class="macc" aria-expanded="false">Programs <svg class="micon" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg></button>
           <div class="msub"><div class="msub-inner">
-            <a href="/programs" style="color:var(--blue);font-weight:800">Programs Overview →</a>
-            <a href="/programs/partial-hospitalization-program-php">PHP</a>
-            <a href="/programs/intensive-outpatient-program-iop">IOP</a>
-            <a href="/programs/outpatient-program">Outpatient</a>
-            <a href="/programs/virtual-iop-california">Virtual IOP</a>
-            <a href="/programs/mental-health-diversion">MH Diversion</a>
+            <a href="https://www.launchtowellness.com/programs" style="color:var(--blue);font-weight:800">Programs Overview →</a>
+            <a href="https://www.launchtowellness.com/programs/partial-hospitalization-program-php">PHP</a>
+            <a href="https://www.launchtowellness.com/programs/intensive-outpatient-program-iop">IOP</a>
+            <a href="https://www.launchtowellness.com/programs/outpatient-program">Outpatient</a>
+            <a href="https://www.launchtowellness.com/programs/virtual-iop-california">Virtual IOP</a>
+            <a href="https://www.launchtowellness.com/programs/mental-health-diversion">MH Diversion</a>
           </div></div></li>
         <li><button class="macc" aria-expanded="false">What We Treat <svg class="micon" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg></button>
           <div class="msub"><div class="msub-inner">
-            <a href="/what-we-treat" style="color:var(--blue);font-weight:800">What We Treat Overview →</a>
+            <a href="https://www.launchtowellness.com/what-we-treat" style="color:var(--blue);font-weight:800">What We Treat Overview →</a>
             <div class="mh">Mental Health</div>
-            <a href="/what-we-treat/mental-health-treatment/anxiety-treatment-los-angeles">Anxiety</a>
-            <a href="/what-we-treat/mental-health-treatment/depression-treatment-los-angeles">Depression</a>
-            <a href="/what-we-treat/mental-health-treatment/ptsd-treatment">PTSD</a>
-            <a href="/what-we-treat/mental-health-treatment/adhd-treatment">ADHD</a>
-            <a href="/what-we-treat/mental-health-treatment/bipolar-disorder-treatment">Bipolar</a>
-            <a href="/what-we-treat/mental-health-treatment/what-is-ocd">OCD</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/anxiety-treatment-los-angeles">Anxiety</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/depression-treatment-los-angeles">Depression</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/ptsd-treatment">PTSD</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/adhd-treatment">ADHD</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/bipolar-disorder-treatment">Bipolar</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/mental-health-treatment/what-is-ocd">OCD</a>
             <div class="mh">Substance Use</div>
-            <a href="/what-we-treat/substance-use-treatment/alcohol-addiction-treatment">Alcohol</a>
-            <a href="/what-we-treat/substance-use-treatment/opioid-addiction-treatment">Opioids</a>
-            <a href="/what-we-treat/substance-use-treatment/stimulant-addiction-treatment">Stimulants</a>
-            <a href="/what-we-treat/substance-use-treatment/cocaine-crack-addiction-treatment">Cocaine &amp; Crack</a>
-            <a href="/what-we-treat/substance-use-treatment/prescription-drug-addiction-treatment">Prescription Drugs</a>
-            <a href="/what-we-treat/substance-use-treatment">View All →</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment/alcohol-addiction-treatment">Alcohol</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment/opioid-addiction-treatment">Opioids</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment/stimulant-addiction-treatment">Stimulants</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment/cocaine-crack-addiction-treatment">Cocaine &amp; Crack</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment/prescription-drug-addiction-treatment">Prescription Drugs</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/substance-use-treatment">View All →</a>
             <div class="mh">Eating Disorders</div>
-            <a href="/what-we-treat/eating-disorders">Overview</a>
-            <a href="/what-we-treat/eating-disorders/anorexia">Anorexia</a>
-            <a href="/what-we-treat/eating-disorders/binge-eating-disorder">Binge Eating</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/eating-disorders">Overview</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/eating-disorders/anorexia">Anorexia</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/eating-disorders/binge-eating-disorder">Binge Eating</a>
             <div class="mh">Dual Diagnosis</div>
-            <a href="/what-we-treat/dual-diagnosis-treatment">Overview</a>
+            <a href="https://www.launchtowellness.com/what-we-treat/dual-diagnosis-treatment">Overview</a>
           </div></div></li>
         <li><button class="macc" aria-expanded="false">Services <svg class="micon" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg></button>
           <div class="msub"><div class="msub-inner">
-            <a href="/therapies-services" style="color:var(--blue);font-weight:800">Services Overview →</a>
-            <a href="/therapies-services/individual-therapy">Individual Therapy</a>
-            <a href="/therapies-services/group-therapy">Group Therapy</a>
-            <a href="/therapies-services/family-therapy">Family Therapy</a>
-            <a href="/therapies-services/psychiatry-medication-management">Psychiatry</a>
-            <a href="/therapies-services/sober-living-support">Sober Living</a>
-            <a href="/therapies-services/aftercare-continuing-care">Aftercare</a>
+            <a href="https://www.launchtowellness.com/therapies-services" style="color:var(--blue);font-weight:800">Services Overview →</a>
+            <a href="https://www.launchtowellness.com/therapies-services/individual-therapy">Individual Therapy</a>
+            <a href="https://www.launchtowellness.com/therapies-services/group-therapy">Group Therapy</a>
+            <a href="https://www.launchtowellness.com/therapies-services/family-therapy">Family Therapy</a>
+            <a href="https://www.launchtowellness.com/therapies-services/psychiatry-medication-management">Psychiatry</a>
+            <a href="https://www.launchtowellness.com/therapies-services/sober-living-support">Sober Living</a>
+            <a href="https://www.launchtowellness.com/therapies-services/aftercare-continuing-care">Aftercare</a>
           </div></div></li>
         <li><button class="macc" aria-expanded="false">Admissions <svg class="micon" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg></button>
           <div class="msub"><div class="msub-inner">
-            <a href="/admissions" style="color:var(--blue);font-weight:800">Admissions Overview →</a>
-            <a href="/admissions/how-admissions-works">How Admissions Works</a>
-            <a href="/admissions/verify-insurance">Verify Insurance</a>
-            <a href="/admissions/what-to-expect">What to Expect</a>
-            <a href="/admissions/professional-referrals">Professional Referrals</a>
+            <a href="https://www.launchtowellness.com/admissions" style="color:var(--blue);font-weight:800">Admissions Overview →</a>
+            <a href="https://www.launchtowellness.com/admissions/how-admissions-works">How Admissions Works</a>
+            <a href="https://www.launchtowellness.com/admissions/verify-insurance">Verify Insurance</a>
+            <a href="https://www.launchtowellness.com/admissions/what-to-expect">What to Expect</a>
+            <a href="https://www.launchtowellness.com/admissions/professional-referrals">Professional Referrals</a>
           </div></div></li>
       </ul>
       <div class="mcta">
-        <a class="ghost" href="/admissions/verify-insurance">Verify Insurance</a>
-        <a class="solid" href="/admissions">Get Help Now</a>
+        <a class="ghost" href="https://www.launchtowellness.com/admissions/verify-insurance">Verify Insurance</a>
+        <a class="solid" href="https://www.launchtowellness.com/admissions">Get Help Now</a>
       </div>
       <div class="mutil">
-        <a href="/admissions/professional-referrals">For Referrals</a>
-        <a href="/for-families">For Families</a>
+        <a href="https://www.launchtowellness.com/admissions/professional-referrals">For Referrals</a>
+        <a href="https://www.launchtowellness.com/for-families">For Families</a>
         <a class="mtel" href="tel:14243274040">Call (424) 327-4040</a>
       </div>
     </div></div>
