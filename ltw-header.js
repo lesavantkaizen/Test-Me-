@@ -196,7 +196,7 @@ class LTWHeader extends HTMLElement {
   <div class="bar">
     <div class="wrap">
       <div class="nav-shell">
-        <a class="brand" href="/" aria-label="Launch To Wellness home">
+        <a class="brand" href="https://www.launchtowellness.com/" aria-label="Launch To Wellness home">
           <img class="logo" src="https://static.wixstatic.com/media/1b3be5_fbde30efe12e4a6c976526f817d913d5~mv2.png" alt="Launch To Wellness">
           <span class="txt">
             <span class="name">Launch <b>To Wellness</b></span>
