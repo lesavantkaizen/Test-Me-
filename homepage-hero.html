@@ -5,9 +5,11 @@
   <!-- ─── HERO SECTION ─────────────────────────────────────────── -->
   <section id="ltw-hero" class="ltw-hero" aria-label="Homepage hero">
 
-    <!-- Background video -->
+    <!-- Background: poster image (swap src when you have one) + video cross-fade -->
     <div class="ltw-hero-bg" aria-hidden="true">
-      <video class="ltw-photo" autoplay muted loop playsinline preload="metadata">
+      <!-- Replace the src below with your static poster image URL to eliminate the load flash -->
+      <!-- <img class="ltw-poster ltw-photo" src="YOUR-POSTER-IMAGE-URL-HERE" alt="" fetchpriority="high"> -->
+      <video class="ltw-photo ltw-video" autoplay muted loop playsinline preload="metadata">
         <source src="https://launchtowellne.wpenginepowered.com/wp-content/uploads/2026/06/header-1.mp4" type="video/mp4">
       </video>
     </div>
@@ -117,9 +119,9 @@
 
 /* ── 1. Design tokens ───────────────────────────────────────────── */
 #ltw-home-hero{
-  --c-blue:       #2782B2;
+  --c-blue:       #4DBBDF;
   --c-blue-deep:  #1F6A92;
-  --c-blue-glow:  rgba(39,130,178,.22);
+  --c-blue-glow:  rgba(77,187,223,.20);
   --c-orange:     #E8A15B;
   --c-navy:       #0F2535;
   --c-navy-2:     #0A1E2E;
@@ -171,6 +173,7 @@
 /* ── 3. Background video + Ken Burns ───────────────────────────── */
 #ltw-home-hero .ltw-hero-bg{
   position:absolute;inset:0;z-index:0;overflow:hidden;
+  background:var(--c-navy); /* prevents any white flash before media loads */
 }
 #ltw-home-hero .ltw-photo{
   position:absolute;inset:-3%;
@@ -179,6 +182,18 @@
   will-change:transform;
   animation:ltw-kb 32s var(--ease-out) infinite alternate;
 }
+/* Video starts hidden; JS fades it in on canplay to avoid white flash */
+#ltw-home-hero .ltw-video{
+  opacity:0;
+  transition:opacity 1.2s ease;
+}
+#ltw-home-hero .ltw-video.ltw-ready{opacity:1}
+/* When a poster <img> is present it shows immediately; video cross-fades over it */
+#ltw-home-hero .ltw-poster{
+  opacity:1;
+  z-index:0;
+}
+#ltw-home-hero .ltw-video{z-index:1}
 @keyframes ltw-kb{
   0%  {transform:scale(1.00) translate(0,0)}
   50% {transform:scale(1.06) translate(-1%,.4%)}
@@ -297,11 +312,8 @@
 }
 #ltw-home-hero .ltw-lead-hl{
   display:block;
-  background:linear-gradient(135deg,#60B8E0 0%,var(--c-blue) 45%,#1855A3 100%);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
   color:var(--c-blue);
+  text-shadow:0 0 40px rgba(77,187,223,.35), 0 2px 24px rgba(8,22,34,.5);
 }
 
 /* ── 10. Tier 2 — SEO H1 ────────────────────────────────────────── */
@@ -438,11 +450,15 @@
 }
 #ltw-home-hero .ltw-trust-bar:hover .ltw-trust-track{animation-play-state:paused}
 #ltw-home-hero .ltw-trust-item{
-  display:flex;align-items:center;gap:9px;
-  font-size:13px;color:rgba(255,255,255,.78);
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;color:rgba(255,255,255,.82);
   white-space:nowrap;letter-spacing:.02em;font-weight:500;line-height:1;
 }
-#ltw-home-hero .ltw-trust-item svg{color:var(--c-orange)}
+#ltw-home-hero .ltw-trust-item svg{
+  color:var(--c-orange);
+  width:18px;height:18px;flex-shrink:0;
+  filter:drop-shadow(0 0 4px rgba(232,161,91,.45));
+}
 #ltw-home-hero .ltw-trust-sep{
   width:3px;height:3px;border-radius:50%;
   background:rgba(255,255,255,.22);flex-shrink:0;
@@ -491,15 +507,30 @@
 ═══════════════════════════════════════════════════════════════════ -->
 <script>
 (function(){
-  /* Re-query each time so block-editor re-renders don't break it. */
+  /* ── Video: fade in once media is ready, eliminates white flash ── */
+  var vid = document.querySelector('#ltw-home-hero .ltw-video');
+  if (vid) {
+    var onReady = function(){ vid.classList.add('ltw-ready'); };
+    if (vid.readyState >= 3) {
+      onReady();
+    } else {
+      vid.addEventListener('canplay', onReady, {once:true});
+      /* Fallback: show after 3 s even if canplay never fires (slow connection) */
+      setTimeout(function(){
+        if (!vid.classList.contains('ltw-ready')) onReady();
+      }, 3000);
+    }
+  }
+
+  /* ── Trust bar: idempotent infinite-scroll cloning ────────────── */
   var track = document.querySelector('#ltw-home-hero [data-ltw-trust]');
   if (!track) return;
 
-  /* Idempotency: remove any clones left by a previous run */
+  /* Strip any clones from a previous run (block-editor re-renders) */
   var clones = track.querySelectorAll('[aria-hidden="true"]');
   clones.forEach(function(n){ n.parentNode.removeChild(n); });
 
-  /* Clone the original item set twice → 3× total content */
+  /* Clone the original set twice → 3× total content for seamless loop */
   var originals = Array.prototype.slice.call(track.children);
   for (var pass = 0; pass < 2; pass++){
     originals.forEach(function(node){
