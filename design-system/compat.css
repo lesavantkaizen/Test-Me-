@@ -98,7 +98,10 @@
   --type-display:    var(--ltw-text-display);
   --type-h2:         var(--ltw-text-h2);
   --type-h3:         var(--ltw-text-h3);
-  --type-card-title: var(--ltw-text-h4);
+  /* The site sets `.ltw-card-title { font-size: var(--type-card-title)
+     !important }`, so this one alias controls every card heading on the page.
+     It must point at the card-title size, not the h4 size. */
+  --type-card-title: var(--ltw-text-card-title);
   --type-lede:       var(--ltw-text-lede);
   --type-body:       var(--ltw-text-body);
   --type-ui:         var(--ltw-text-ui);
@@ -113,7 +116,7 @@
   --ltw-type-h4:      var(--ltw-text-h4);
   --ltw-type-lede:    var(--ltw-text-lede);
   --ltw-type-body:    var(--ltw-text-body);
-  --ltw-type-card:    var(--ltw-text-body);
+  --ltw-type-card:    var(--ltw-text-card-title);
   --ltw-type-ui:      var(--ltw-text-ui);
   --ltw-type-meta:    var(--ltw-text-meta);
   --ltw-type-eyebrow: var(--ltw-text-eyebrow);

@@ -90,12 +90,35 @@ editor. Setting both to Inter resolves the remainder.
 Install exactly these faces — a weight referenced but not installed gets
 synthesised by the browser, which looks subtly wrong:
 
-| Family | Role | Weights | Styles |
-|---|---|---|---|
-| Fraunces | display — h1, h2, h3 | 600, 700 | upright |
-| Inter | body, UI, h4, labels | 400, 500, 600, 700 | upright |
+| Family | Weights | Styles |
+|---|---|---|
+| Fraunces | 600, 700 | upright |
+| Inter | 400, 500, 600, 700 | upright |
 
 Six faces. The live site currently carries **34** (1.24MB).
+
+### Type roles
+
+| Role | Face | Size |
+|---|---|---|
+| h1–h4, page titles, hero titles | **Fraunces** | the `--ltw-text-h*` scale |
+| **Card headings** | **Inter**, 700 | `--ltw-text-card-title` — 16px |
+| Body, lede, UI, labels, meta, eyebrows, buttons, nav | **Inter** | the matching token |
+
+**A card heading is the only place Inter is used as a heading face.** It is
+16px/700 — the same size as the card's body copy, on purpose. Weight and the
+uppercase treatment carry the distinction; matching the size keeps cards
+compact and stops card titles competing with section headings. At 16px a
+display serif goes muddy, which is why Fraunces does not run here.
+
+Measured after applying this: all **49** card headings render at 16px/700
+Inter, and 24 of the 26 non-card headings render Fraunces. The two exceptions
+are the header site title and a mega-menu label, both of which are marked up as
+headings but are really chrome — see T1 in `fixes.css`.
+
+One judgement call is flagged inline: four accordion item titles are *not*
+cards, so by this rule they take Fraunces. If they should follow the card rule
+instead, `fixes.css` says which block to delete.
 
 ### Inter is not yet loaded
 

@@ -41,6 +41,18 @@ which of the 20 hand-written section blocks wins the cascade.
 `--navy` is three colours. `--blue` is two. `--ltw-type-h2` is both 32px and
 34px. `--ltw-type-lede` is three different values.
 
+**There is already a utility layer, and it is the way in.** The CSS carries a
+set of `!important` utility classes — `.ltw-h1`/`.ltw-h2`/`.ltw-h3` pointing at
+`var(--font-display)`, and `.ltw-card-title`, `.ltw-lede`, `.ltw-body`,
+`.ltw-ui-text`, `.ltw-meta`, `.ltw-eyebrow`, `.ltw-btn` pointing at
+`var(--font-ui)`. Somebody started building the right thing.
+
+That layer is why the token approach works rather than fighting the site: point
+`--font-ui` and `--font-display` at the canonical tokens and every utility class
+follows, `!important` and all. Retiring Nunito Sans across 141 elements needed
+almost no selector combat — most of it fell out of remapping two variables. The
+same lever is available for the rest of the migration.
+
 ## Findings, ranked
 
 ### 1. The accent colour fails contrast everywhere it is used on light — **accessibility**
@@ -235,8 +247,10 @@ better than most sites.
 | H3 below body size | 5 instances | **0** |
 | Carousel dot hit area (±14px) | miss | **hit** |
 | Card radii | 5 | 5 *(unchanged)* |
-| Elements rendering Nunito Sans | 141 | **47** |
-| Elements rendering Inter | 568 | **667** |
+| Elements rendering Nunito Sans | 141 | **0** |
+| Elements rendering Inter | 568 | **717** |
+| Card headings on one spec (16px/700 Inter) | 0 of 49 | **49 of 49** |
+| Non-card headings on Fraunces | 20 of 26 | **24 of 26** |
 
 Honest notes on the residual:
 
@@ -249,11 +263,15 @@ Honest notes on the residual:
   stray 24px collapsed onto 12px but ~55 icon chips at 7px are styled by nested
   selectors an override layer cannot reach. This needs source edits, not more
   `!important`.
-- **47 elements still render Nunito Sans.** These are the Kadence header and
-  navigation blocks, whose CSS repeats class selectors
-  (`.kb-link-wrap.kb-link-wrap.kb-link-wrap`) to outrank everything. The fix is
-  a settings change — *Customize → Typography* and the header block's own
-  typography — not more CSS.
+- **Nunito Sans is fully retired in the render** — 141 elements down to 0. All
+  24 live declarations naming it are covered (the other 16 of the 40 found are
+  `@font-face` rules, retired in the Font Library rather than in CSS). Note
+  this only removes it from the *page*; the font files still ship until it is
+  deleted from the Font Library.
+- **Two headings still render Inter rather than Fraunces.** They are the header
+  site title and a mega-menu label — both marked up as headings but functioning
+  as chrome, and both already listed as semantic defects in finding 4. Inter is
+  correct for them; the markup is what is wrong.
 
 ## Recommended order of work
 
