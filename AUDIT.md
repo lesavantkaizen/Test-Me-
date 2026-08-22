@@ -78,6 +78,52 @@ kept for fills, rules and icons on navy.
 This matters beyond aesthetics: a behavioural-health provider carries real ADA
 exposure, and the audience includes people in acute distress and older parents.
 
+### 1b. Four JavaScript blocks are corrupted and do not run — **broken functionality**
+
+Found while investigating reported motion failures, and more urgent than
+anything below it.
+
+The homepage embeds 24 scripts as `data:text/javascript;base64,…` URIs.
+Decoding them shows the JavaScript was HTML-encoded **before** it was
+base64-encoded:
+
+```js
+if (event.key === "Escape" &#038;&#038; current) {   // should be &&
+```
+
+WordPress converts `&` to `&#038;` when it processes content; whoever encoded
+these blocks encoded the already-mangled text, baking the corruption in
+permanently. Base64 then hid it — the page source looks fine and nothing
+surfaces until the browser tries to parse it. **11 corrupted operators across 5
+scripts; four die outright.**
+
+| Script | Section | Effect |
+|---|---|---|
+| accreditation panel | "Verified and Accredited Care" | Dead — clicking a credential does nothing |
+| audience spine | "Who We Support" | Dead |
+| help cards | Help cards | Dead |
+| space gallery | "A Space Built Around You" | Dead |
+| video embed | Video block | Parses, but builds a malformed YouTube URL |
+
+Separately, **27 of the 35 `.ltw-reveal` elements never animate.** Each section
+ships its own `IntersectionObserver` scoped to its own wrapper, and several
+sections have none at all — including `.ltw-es`, the "Integrated Mental Health &
+Substance Use Treatment" block. Nothing is stuck invisible; those elements
+render at full opacity and read correctly, they simply never move.
+
+Both are fixed in `design-system/motion/`, with measurements:
+
+| | Before | After |
+|---|---|---|
+| JavaScript parse errors | 4 | **0** |
+| `.ltw-reveal` elements animating | 8 / 35 | **35 / 35** |
+| Credential panel opens on click | no | **yes** |
+
+**Timeline note:** the scripts are byte-identical between the 22 August snapshot
+and the 21 August page update, so this predates both — and none of the CSS in
+this repo has ever been deployed to the site. The corruption is not a
+regression from this work.
+
 ### 2. Colour drift actively broke contrast that was previously fine
 
 The unprefixed aliases do not merely differ from the canonical tokens — some
@@ -274,6 +320,12 @@ Honest notes on the residual:
   correct for them; the markup is what is wrong.
 
 ## Recommended order of work
+
+**First — broken functionality**
+
+0. Repair the four corrupted scripts and add the reveal fallback (finding 1b).
+   See `design-system/motion/README.md`. This is ahead of everything else
+   because four sections currently do nothing at all when clicked.
 
 **Now — accessibility and conversion, low risk**
 
