@@ -118,8 +118,11 @@
   --ltw-type-meta:    var(--ltw-text-meta);
   --ltw-type-eyebrow: var(--ltw-text-eyebrow);
 
-  /* Font family aliases. --font-ui and --ltw-ui resolved to Inter in several
-     blocks; Inter has no @font-face anywhere on the site. */
+  /* Font family aliases. Several blocks set these to Nunito Sans and others to
+     Inter, so the same role rendered in two different faces down the page.
+     Both now resolve to Inter (the chosen UI face). Nunito Sans is retired —
+     any block still naming it directly needs its font-family line replaced
+     with var(--ltw-font-ui). */
   --font-ui:      var(--ltw-font-ui);
   --font-display: var(--ltw-font-display);
   --ltw-ui:       var(--ltw-font-ui);

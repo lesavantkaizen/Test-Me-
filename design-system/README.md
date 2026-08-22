@@ -25,22 +25,47 @@ declarations and `fixes` must come last:
 3. fixes.css
 ```
 
-**Preferred — child theme.** Keeps the CSS in version control:
+### These must load in the footer, not the head
+
+**43 `<style>` blocks are printed on the homepage, and 21 of them are in the
+`<body>` — including 16 of the 19 hand-written section blocks.** Kadence emits
+block CSS inline next to each block rather than in the head.
+
+Anything loaded in `<head>` therefore comes *earlier in document order* than
+those 16 blocks and loses every equal-specificity fight. This is measured, not
+theoretical: injecting these three files in the head left 103 elements still
+rendering Nunito Sans; injecting them before `</body>` cut that to 47.
+
+That rules out *Appearance → Customize → Additional CSS*, which outputs to the
+head. Use a child theme and hook the enqueue to `wp_footer`:
 
 ```php
 // functions.php
-add_action( 'wp_enqueue_scripts', function () {
+add_action( 'wp_footer', function () {
     $base = get_stylesheet_directory_uri() . '/design-system/';
     $ver  = '1.0.0';
     wp_enqueue_style( 'ltw-tokens', $base . 'tokens.css', [], $ver );
     wp_enqueue_style( 'ltw-compat', $base . 'compat.css', [ 'ltw-tokens' ], $ver );
     wp_enqueue_style( 'ltw-fixes',  $base . 'fixes.css',  [ 'ltw-compat' ], $ver );
-}, 100 ); // priority 100 so these load after Kadence
+}, 1 );
 ```
 
-**Quicker — Customizer.** Paste the three files, in order, into
-*Appearance → Customize → Additional CSS*. Works, but the CSS then lives only
-in the database and drifts from this repo.
+A stylesheet in the footer is unusual and it does mean these rules are not
+present at first paint. That is the correct trade here — they are corrections
+layered over CSS that cannot be edited, and the alternative is an
+`!important` arms race. As sections are migrated onto the tokens (see
+*Migration*), move the enqueue back to `wp_enqueue_scripts` in the head.
+
+### What CSS still cannot reach
+
+After the footer enqueue, ~47 elements still render Nunito Sans. These are the
+Kadence **header and navigation blocks**, whose CSS uses deliberately repeated
+class selectors (`.kb-link-wrap.kb-link-wrap.kb-link-wrap`) to outrank
+everything.
+
+Do not fight those with CSS. Change them at source: *Customize → Typography*
+for the global faces, and the header block's own typography settings in the
+editor. Setting both to Inter resolves the remainder.
 
 ## Rules
 
@@ -57,6 +82,53 @@ in the database and drifts from this repo.
 5. **`#e8a15b` is never text on a light background.** It measures 2.17:1 on
    white. Use `--ltw-text-accent` (`#9a5f22`, 5.21:1) for accent text, and
    keep the orange for fills, rules and icons on navy.
+
+## Fonts
+
+**Fraunces** for display, **Inter** for everything else. Nunito Sans is retired.
+
+Install exactly these faces — a weight referenced but not installed gets
+synthesised by the browser, which looks subtly wrong:
+
+| Family | Role | Weights | Styles |
+|---|---|---|---|
+| Fraunces | display — h1, h2, h3 | 600, 700 | upright |
+| Inter | body, UI, h4, labels | 400, 500, 600, 700 | upright |
+
+Six faces. The live site currently carries **34** (1.24MB).
+
+### Inter is not yet loaded
+
+Measured on the live page: Inter appears in seven font stacks but has **no
+`@font-face` anywhere on the site**. It exists only inside Kadence's remote
+Google Fonts request, so it silently falls back to a system font whenever that
+request is slow or blocked — which is most of why type looks inconsistent
+between sections.
+
+Fraunces and Nunito Sans *are* self-hosted, via the **WordPress Font Library**
+(the page carries `class="wp-fonts-local"`). Inter was simply never added there.
+
+**To fix, in order:**
+
+1. *Appearance → Editor → Styles → Typography → Fonts → Install Fonts →*
+   install **Inter** at 400/500/600/700, upright only.
+2. Remove **Nunito Sans** from the Library — 16 faces, 620KB.
+3. Trim **Fraunces** from 18 faces to 600/700 upright — saves ~548KB.
+4. Once both families are local, drop Kadence's remote Google Fonts request
+   (handle `kadence-fonts-gfonts`). Pointing Kadence's typography settings at
+   the Library fonts normally stops it; otherwise dequeue it in the child theme:
+
+```php
+add_action( 'wp_enqueue_scripts', function () {
+    wp_dequeue_style( 'kadence-fonts-gfonts' );
+    wp_deregister_style( 'kadence-fonts-gfonts' );
+}, 20 );
+```
+
+Net: ~1.06MB less font weight and no render-blocking third-party request.
+
+Until step 1 is done, `--ltw-font-ui` falls through to the next entry in its
+stack. Nothing breaks — it just isn't Inter yet.
 
 ## Colour contrast
 

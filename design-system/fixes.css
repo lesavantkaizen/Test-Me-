@@ -197,6 +197,52 @@ p a, li a, .ltw-prose a, [class*="__body"] a {
 
 
 /* -----------------------------------------------------------------------------
+   5b. FONT FAMILY CONSOLIDATION  (measured)
+   The site currently renders three families: Fraunces and Nunito Sans
+   (self-hosted, 34 faces, 1.24MB) plus Inter, which is named in seven stacks
+   but has no @font-face anywhere — it exists only in a render-blocking Google
+   Fonts request, so it falls back to a system font whenever that is slow.
+
+   Going forward the pairing is Fraunces + Inter. Nunito Sans is retired.
+
+   Four places name Nunito Sans literally, so the compat aliases cannot reach
+   them; they are repointed here. !important is needed on the body rule because
+   the live declaration sets the family alongside a background on a bare
+   `body` selector.
+
+   This rule only takes effect once Inter is installed in the WordPress Font
+   Library — until then it falls through to the next stack entry. See "Fonts"
+   in README.md.
+   -------------------------------------------------------------------------- */
+
+body {
+  font-family: var(--ltw-font-ui) !important;
+}
+
+.ltw-hero,
+.ltw-accred,
+.ltw-admissions {
+  font-family: var(--ltw-font-ui);
+}
+
+/* The homepage hero h1 is already Fraunces. Interior-page hero h1s are
+   currently Inter, so this is a deliberate CHANGE, not a preservation: it
+   makes the display face consistent across every page's primary heading.
+   If interior heroes are meant to read as Inter, delete `.entry-hero h1`
+   from this rule. */
+.ltw-hero h1,
+.ltw-hero__title,
+.entry-hero h1 {
+  font-family: var(--ltw-font-display);
+}
+
+/* Inter's default figures are proportional; line up any tabular data. */
+table, .ltw-stat, [class*="__stat"], [class*="__number"], .num {
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* -----------------------------------------------------------------------------
    6. FOCUS VISIBILITY
    Focus treatment was inconsistent across the 20 hand-written blocks; several
    set outline:none without a replacement. One visible treatment everywhere.
@@ -322,10 +368,21 @@ section[class*="ltw-wp-"] {
        soft on every 2x display. Upload a 60px+ asset and let WordPress emit
        a srcset.
 
-   T6. Google Fonts loads Inter, Fraunces and Nunito Sans while the site also
-       self-hosts 34 @font-face rules for Fraunces and Nunito Sans. The two
-       latter families download twice. Inter has no self-hosted face at all,
-       so seven font stacks referencing it depend entirely on that
-       render-blocking third-party request. Drop the Google Fonts link and
-       remove Inter from the stacks (tokens.css already does the latter).
+   T6. Fonts. The chosen pairing is Fraunces (display) + Inter (everything
+       else); Nunito Sans is retired. Three steps, in this order:
+
+         a. Install Inter into the WordPress Font Library at weights
+            400/500/600/700, upright only. The Library is what already
+            self-hosts Fraunces and Nunito Sans (the page carries
+            class="wp-fonts-local"); Inter was simply never added, which is
+            why it resolves to a system font today.
+         b. Remove Nunito Sans from the Library (16 faces, 620KB) and trim
+            Fraunces from 18 faces to 600/700 upright (saves ~548KB).
+         c. Once both families are self-hosted, drop Kadence's remote Google
+            Fonts request (handle `kadence-fonts-gfonts`). Setting Kadence's
+            typography to the Library fonts normally stops it; otherwise
+            dequeue it in the child theme.
+
+       Result: 6 self-hosted faces instead of 34, ~1.06MB less font weight,
+       and no render-blocking third-party request.
    ============================================================================= */

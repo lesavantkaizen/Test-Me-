@@ -87,13 +87,23 @@
 
   /* ---------------------------------------------------------------------------
      TYPOGRAPHY
-     Two families only. Inter is deliberately absent — it was referenced in
-     seven stacks with no matching @font-face and resolved to an arbitrary
-     system font on every visitor's device.
+     Two families: Fraunces for display, Inter for everything else.
+     Nunito Sans is retired.
+
+     IMPORTANT — Inter must be installed into the WordPress Font Library before
+     this ships. As measured, Inter appeared in seven font stacks with no
+     @font-face anywhere on the site: it existed only in a render-blocking
+     Google Fonts request, so it silently fell back to a system font whenever
+     that request was slow or blocked. Fraunces and Nunito Sans are already
+     self-hosted (the page carries class="wp-fonts-local"); Inter simply was
+     never added. See "Fonts" in README.md for the steps.
+
+     The fallback stack below is ordered so that if Inter is ever missing, the
+     substitute is metrically close rather than arbitrary.
      --------------------------------------------------------------------------- */
 
   --ltw-font-display: Fraunces, Georgia, "Times New Roman", serif;
-  --ltw-font-ui:      "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --ltw-font-ui:      Inter, "Inter var", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Fluid type scale, 390px -> 1440px viewport.
      14px is the hard floor: no token below it exists, so 10/11/12px text
@@ -111,6 +121,12 @@
                                       below (uppercase + 600 + tracking),
                                       which restores legibility.              */
 
+  /* Install exactly these weights and no others. A weight referenced here but
+     not installed gets synthesised by the browser, which looks subtly wrong
+     and is why the site currently carries 34 font faces to be safe.
+       Inter    — 400, 500, 600, 700  (upright only; no italics are used)
+       Fraunces — 600, 700            (upright only)
+     Six faces total, against the 34 measured on the live page. */
   --ltw-weight-regular:  400;
   --ltw-weight-medium:   500;
   --ltw-weight-semibold: 600;

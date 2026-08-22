@@ -126,28 +126,43 @@ At 390px, 15 non-prose interactive elements render under 44×44:
 
 The skip link at 1×1 is correct and intentionally excluded.
 
-### 7. Fonts load twice, and a third family is referenced but never loaded — **performance**
+### 7. Three families load; the one you want isn't actually loaded — **performance**
 
-The site self-hosts **34 `@font-face` rules** (Fraunces + Nunito Sans, 8 weights
-× 2 styles each, 1.3MB) **and** loads a render-blocking Google Fonts
-stylesheet:
+The site self-hosts **34 `@font-face` rules** via the WordPress Font Library
+(the page carries `class="wp-fonts-local"`) **and** loads a render-blocking
+Google Fonts stylesheet:
 
 ```
 fonts.googleapis.com/css?family=Inter:regular,600,700
   |Fraunces:600,700|Nunito Sans:600,regular,500,700
 ```
 
-So Fraunces and Nunito Sans download from two sources. Worse, **Inter appears
-in 7 font stacks and has no `@font-face` anywhere on the site** — it exists
-only in that Google Fonts request. Confirmed by enumerating the loaded font
-faces: only Fraunces and Nunito Sans are present.
+| Family | Self-hosted faces | Weights | Bytes |
+|---|---|---|---|
+| Fraunces | 18 | 9 × 2 styles | 616KB |
+| Nunito Sans | 16 | 8 × 2 styles | 620KB |
+| **Inter** | **0** | — | — |
+| | | | **1.24MB** |
 
-Every element declaring `Inter, sans-serif` therefore depends on a
-third-party, render-blocking request, and falls back to an arbitrary system
-font when it is slow or blocked. Half the page's text is affected.
+So Fraunces and Nunito Sans download from two sources. **Inter appears in 7
+font stacks and has no `@font-face` anywhere** — confirmed by enumerating the
+loaded faces. It exists only in that third-party request, so every element
+declaring `Inter, sans-serif` falls back to an arbitrary system font whenever
+the request is slow or blocked. That is most of why type reads inconsistently
+between sections.
 
-The self-hosted set is also over-provisioned: 34 faces for a design that uses
-about four weights.
+**Direction set: Fraunces + Inter. Nunito Sans is retired.** The remedy is
+therefore to *add* Inter to the Font Library rather than remove it from the
+stacks:
+
+1. Install Inter locally at 400/500/600/700, upright only.
+2. Remove Nunito Sans (16 faces, 620KB).
+3. Trim Fraunces from 18 faces to 600/700 upright (~548KB).
+4. Drop the remote `kadence-fonts-gfonts` request once both are local.
+
+That lands at **6 self-hosted faces instead of 34** — roughly **1.06MB less
+font weight** and no render-blocking third-party request. Steps are in
+`design-system/README.md`.
 
 ### 8. Above-the-fold images are lazy-loaded — **perceived performance** *(template)*
 
@@ -168,6 +183,18 @@ prospective patient looks for first.
 
 The 801KB HTML document is **62% inline CSS**, none of it cacheable across
 pages. Each of the 20 section blocks re-declares its own local variables.
+
+There is a second consequence beyond weight. **21 of the 43 `<style>` blocks
+are printed in the `<body>`, including 16 of the 19 hand-written section
+blocks** — Kadence emits block CSS next to each block. Anything loaded in the
+head comes earlier in document order and loses every equal-specificity fight
+against them.
+
+This is why *Customize → Additional CSS* is the wrong place for corrective CSS
+on this site, and it is measured rather than theoretical: loading the override
+layer in the head left 103 elements rendering the wrong typeface; loading it
+before `</body>` cut that to 47. See the install notes in
+`design-system/README.md`.
 
 ### 10. Breakpoint sprawl — **maintainability, not a live bug**
 
@@ -208,6 +235,8 @@ better than most sites.
 | H3 below body size | 5 instances | **0** |
 | Carousel dot hit area (±14px) | miss | **hit** |
 | Card radii | 5 | 5 *(unchanged)* |
+| Elements rendering Nunito Sans | 141 | **47** |
+| Elements rendering Inter | 568 | **667** |
 
 Honest notes on the residual:
 
@@ -220,20 +249,27 @@ Honest notes on the residual:
   stray 24px collapsed onto 12px but ~55 icon chips at 7px are styled by nested
   selectors an override layer cannot reach. This needs source edits, not more
   `!important`.
+- **47 elements still render Nunito Sans.** These are the Kadence header and
+  navigation blocks, whose CSS repeats class selectors
+  (`.kb-link-wrap.kb-link-wrap.kb-link-wrap`) to outrank everything. The fix is
+  a settings change — *Customize → Typography* and the header block's own
+  typography — not more CSS.
 
 ## Recommended order of work
 
 **Now — accessibility and conversion, low risk**
 
-1. Load `tokens.css` → `compat.css` → `fixes.css`. Fixes findings 1, 2, 3, 6
-   and the measure/rhythm items without touching markup.
+1. Load `tokens.css` → `compat.css` → `fixes.css` **from the footer, not the
+   head** (see finding 9 — head-loaded CSS loses to the inline body blocks).
+   Fixes findings 1, 2, 3, 6 and the measure/rhythm items without touching
+   markup.
 2. Add a `tel:` link and the logo to the mobile header (finding 5).
 3. Remove `loading="lazy"` from the 28 above-the-fold carrier logos (8).
 
 **Next — performance**
 
-4. Drop the Google Fonts request; remove Inter from the font stacks. Trim the
-   self-hosted set from 34 faces to the ~8 actually used (7).
+4. Install Inter into the Font Library, retire Nunito Sans, trim Fraunces, then
+   drop the remote Google Fonts request — 34 faces down to 6 (7).
 5. Move the 251KB of section CSS out of inline `<style>` into a cacheable
    stylesheet (9).
 
