@@ -1,0 +1,217 @@
+/* =============================================================================
+   Launch To Wellness — Design Tokens
+   Single source of truth. Every value below is intentional and appears once.
+
+   Load order in WordPress:
+     1. tokens.css      (this file)
+     2. compat.css      (maps legacy/drifted names onto these)
+     3. fixes.css       (corrective overrides for live defects)
+
+   All tokens are namespaced --ltw-. Nothing else should declare a colour,
+   a font size, a spacing value, a radius, or a breakpoint.
+   ============================================================================= */
+
+:root {
+  /* ---------------------------------------------------------------------------
+     COLOUR — anchored to the existing Kadence global palette so the theme
+     controls and these tokens can never disagree.
+
+     Kadence mapping (Appearance -> Customize -> Colors):
+       palette1  #1b6084  blue          palette9   #f7f4ee  ivory
+       palette2  #0e2c3d  navy          palette10  #e8a15b  orange
+       palette3  #172d38  ink           palette11  #13612e  green
+       palette4  #526671  slate         palette12  #397a9d  blue-light
+       palette5  #d9e1e4  mist          palette13  #b84a4a  red
+       palette6  #eef2f2  cloud         palette14  #9a5f22  amber-dark
+       palette7  #ffffff  white         palette15  #e8a15b  (dupe of 10)
+       palette8  #e8f4f9  sky-wash
+     --------------------------------------------------------------------------- */
+
+  /* Base ramp */
+  --ltw-navy:        #0e2c3d;   /* darkest brand tone; hero + footer grounds  */
+  --ltw-ink:         #172d38;   /* primary body text on light                */
+  --ltw-blue:        #1b6084;   /* primary action + link colour              */
+  --ltw-slate:       #526671;   /* secondary text; AA on white at 6.00       */
+  --ltw-mist:        #d9e1e4;   /* borders, dividers                         */
+  --ltw-cloud:       #eef2f2;   /* subtle neutral fill                       */
+  --ltw-sky-wash:    #e8f4f9;   /* tinted section ground                     */
+  --ltw-ivory:       #f7f4ee;   /* warm section ground                       */
+  --ltw-white:       #ffffff;
+
+  /* Accent — see the contrast note below before using --ltw-orange on text */
+  --ltw-orange:      #e8a15b;   /* decorative fills, rules, icons on navy    */
+  --ltw-amber-text:  #9a5f22;   /* the ONLY accessible amber for text/icons
+                                   on a light ground (5.21:1 on white).      */
+
+  /* Status */
+  --ltw-success:     #13612e;
+  --ltw-danger:      #b84a4a;
+  --ltw-info:        #397a9d;
+
+  /* ---------------------------------------------------------------------------
+     SEMANTIC COLOUR ROLES — components reference these, never the ramp above.
+     Every pairing here is verified >= 4.5:1 for body text.
+     --------------------------------------------------------------------------- */
+
+  /* Text */
+  --ltw-text-primary:      var(--ltw-ink);       /* 14.30:1 on white         */
+  --ltw-text-secondary:    var(--ltw-slate);     /*  6.00:1 on white         */
+  --ltw-text-link:         var(--ltw-blue);      /*  6.88:1 on white         */
+  --ltw-text-accent:       var(--ltw-amber-text);/*  5.21:1 on white         */
+  --ltw-text-on-dark:      var(--ltw-white);     /* 14.52:1 on navy          */
+  --ltw-text-on-dark-mute: #c9d6dd;              /*  9.10:1 on navy          */
+
+  /* Backgrounds */
+  --ltw-bg-page:           var(--ltw-white);
+  --ltw-bg-subtle:         var(--ltw-cloud);
+  --ltw-bg-tinted:         var(--ltw-sky-wash);
+  --ltw-bg-warm:           var(--ltw-ivory);
+  --ltw-bg-inverse:        var(--ltw-navy);
+  --ltw-bg-card:           var(--ltw-white);
+
+  /* Borders */
+  --ltw-border-default:    var(--ltw-mist);
+  --ltw-border-strong:     var(--ltw-slate);
+  --ltw-border-focus:      var(--ltw-blue);
+
+  /* Actions */
+  --ltw-action-bg:         var(--ltw-blue);
+  --ltw-action-text:       var(--ltw-white);      /* 6.88:1 — AA            */
+  --ltw-action-hover:      #17506e;
+  --ltw-action-pressed:    #114058;
+
+  /* Secondary action — orange ground REQUIRES navy text, never white.
+     white on #e8a15b = 2.17:1 (fails). navy on #e8a15b = 6.69:1 (passes). */
+  --ltw-action-alt-bg:     var(--ltw-orange);
+  --ltw-action-alt-text:   var(--ltw-navy);
+
+  /* ---------------------------------------------------------------------------
+     TYPOGRAPHY
+     Two families only. Inter is deliberately absent — it was referenced in
+     seven stacks with no matching @font-face and resolved to an arbitrary
+     system font on every visitor's device.
+     --------------------------------------------------------------------------- */
+
+  --ltw-font-display: Fraunces, Georgia, "Times New Roman", serif;
+  --ltw-font-ui:      "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Fluid type scale, 390px -> 1440px viewport.
+     14px is the hard floor: no token below it exists, so 10/11/12px text
+     cannot be reintroduced by referencing the scale. */
+  --ltw-text-display: clamp(2.5rem,   1.60rem + 3.70vw, 4.25rem);  /* 40 -> 68 */
+  --ltw-text-h1:      clamp(2.25rem,  1.65rem + 2.46vw, 3.50rem);  /* 36 -> 56 */
+  --ltw-text-h2:      clamp(1.75rem,  1.32rem + 1.76vw, 2.50rem);  /* 28 -> 40 */
+  --ltw-text-h3:      clamp(1.375rem, 1.16rem + 0.88vw, 1.75rem);  /* 22 -> 28 */
+  --ltw-text-h4:      clamp(1.125rem, 1.05rem + 0.31vw, 1.3125rem);/* 18 -> 21 */
+  --ltw-text-lede:    clamp(1.0625rem,1.00rem + 0.26vw, 1.25rem);  /* 17 -> 20 */
+  --ltw-text-body:    1rem;        /* 16 — minimum for sustained reading      */
+  --ltw-text-ui:      0.9375rem;   /* 15 — buttons, nav, form labels          */
+  --ltw-text-meta:    0.875rem;    /* 14 — captions, legal. Absolute floor.   */
+  --ltw-text-eyebrow: 0.8125rem;   /* 13 — ONLY with the eyebrow treatment
+                                      below (uppercase + 600 + tracking),
+                                      which restores legibility.              */
+
+  --ltw-weight-regular:  400;
+  --ltw-weight-medium:   500;
+  --ltw-weight-semibold: 600;
+  --ltw-weight-bold:     700;
+
+  --ltw-leading-tight:   1.1;   /* display + h1                              */
+  --ltw-leading-snug:    1.25;  /* h2, h3                                    */
+  --ltw-leading-normal:  1.5;   /* lede, ui                                  */
+  --ltw-leading-relaxed: 1.65;  /* body copy                                 */
+
+  --ltw-tracking-tight:  -0.02em;
+  --ltw-tracking-normal: 0;
+  --ltw-tracking-wide:   0.08em;  /* eyebrows                                */
+
+  /* Reading measure — caps line length in the 45-75 character band */
+  --ltw-measure:       68ch;
+  --ltw-measure-tight: 52ch;
+
+  /* ---------------------------------------------------------------------------
+     SPACING — 4px base, 10 steps. Replaces 42 ad-hoc values.
+     --------------------------------------------------------------------------- */
+  --ltw-s-1:  0.25rem;  /*   4 */
+  --ltw-s-2:  0.5rem;   /*   8 */
+  --ltw-s-3:  0.75rem;  /*  12 */
+  --ltw-s-4:  1rem;     /*  16 */
+  --ltw-s-5:  1.5rem;   /*  24 */
+  --ltw-s-6:  2rem;     /*  32 */
+  --ltw-s-7:  3rem;     /*  48 */
+  --ltw-s-8:  4rem;     /*  64 */
+  --ltw-s-9:  6rem;     /*  96 */
+  --ltw-s-10: 8rem;     /* 128 */
+
+  /* Section rhythm — fluid, so vertical pace scales with the viewport */
+  --ltw-section-y:       clamp(3rem, 2.1rem + 3.7vw, 6rem);
+  --ltw-section-y-tight: clamp(2rem, 1.5rem + 2.1vw, 3.5rem);
+  --ltw-gutter:          clamp(1.25rem, 0.9rem + 1.5vw, 2.5rem);
+
+  /* ---------------------------------------------------------------------------
+     LAYOUT
+     --------------------------------------------------------------------------- */
+  --ltw-container:        1340px;  /* matches the existing Kadence header    */
+  --ltw-container-narrow: 960px;
+  --ltw-container-text:   720px;
+
+  /* ---------------------------------------------------------------------------
+     RADIUS — 4 steps. Replaces 20 values across 4 competing namespaces.
+     --------------------------------------------------------------------------- */
+  --ltw-radius-sm:    6px;
+  --ltw-radius-md:   12px;
+  --ltw-radius-lg:   20px;
+  --ltw-radius-round: 999px;
+
+  /* ---------------------------------------------------------------------------
+     ELEVATION — 4 steps. Replaces 23 distinct box-shadow declarations.
+     Tinted with the navy hue rather than pure black so shadows sit in the
+     same colour world as the palette.
+     --------------------------------------------------------------------------- */
+  --ltw-shadow-sm: 0 1px 2px rgba(14, 44, 61, 0.06),
+                   0 1px 3px rgba(14, 44, 61, 0.08);
+  --ltw-shadow-md: 0 2px 4px rgba(14, 44, 61, 0.06),
+                   0 4px 12px rgba(14, 44, 61, 0.10);
+  --ltw-shadow-lg: 0 4px 8px rgba(14, 44, 61, 0.06),
+                   0 12px 28px rgba(14, 44, 61, 0.12);
+  --ltw-shadow-focus: 0 0 0 3px rgba(27, 96, 132, 0.40);
+
+  /* ---------------------------------------------------------------------------
+     MOTION
+     --------------------------------------------------------------------------- */
+  --ltw-duration-micro:     150ms;  /* hover, focus                          */
+  --ltw-duration-component: 250ms;  /* accordions, dropdowns                 */
+  --ltw-duration-view:      400ms;  /* section reveals                       */
+  --ltw-ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ltw-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---------------------------------------------------------------------------
+     TOUCH TARGET — WCAG 2.2 AA (2.5.8) requires 24px minimum; 44px is the
+     iOS/Android guidance and the value used here.
+     --------------------------------------------------------------------------- */
+  --ltw-tap-min: 44px;
+}
+
+/* =============================================================================
+   BREAKPOINTS
+   Three, min-width only, mobile-first. Replaces 18 values that mixed
+   min-width and max-width at overlapping edges (768/767, 1024/1025/1023,
+   480/479). Custom properties cannot be used inside media queries, so these
+   are documented constants — use them literally and use nothing else.
+
+     --ltw-bp-md:  640px   phone -> large phone / small tablet
+     --ltw-bp-lg: 1024px   tablet -> desktop
+     --ltw-bp-xl: 1280px   desktop -> wide
+
+   Never author a max-width query. If a rule needs to stop applying, scope
+   it to the next min-width step instead.
+   ============================================================================= */
+
+/* Reduced motion is honoured globally rather than per-component. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ltw-duration-micro: 0ms;
+    --ltw-duration-component: 0ms;
+    --ltw-duration-view: 0ms;
+  }
+}

@@ -1,0 +1,331 @@
+/* =============================================================================
+   Launch To Wellness — Corrective overrides
+
+   Each rule fixes a defect measured on the live homepage. Load LAST, after
+   tokens.css and compat.css.
+
+   Paste target: Appearance -> Customize -> Additional CSS, or better, enqueue
+   from a child theme so it stays in version control.
+
+   On !important: the site's section CSS is 20 hand-written blocks using
+   high-specificity scoped selectors, several already using !important. These
+   overrides are a layer on top of CSS that cannot be edited from here, so
+   !important is used deliberately and only where a measured rule outranks the
+   correction. It is marked at each site. As sections are migrated to the
+   tokens, these can be dropped.
+
+   Four findings in AUDIT.md are template changes and are NOT fixable here;
+   they are listed at the bottom of this file for reference.
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   1. HEADING HIERARCHY INVERSION  (measured)
+   Three headings render smaller than the 16px body copy next to them:
+     - 5x  h3.ltw-cred-title       at 14.5px
+     - 1x  h2 in a Kadence column  at 12px
+   Heading level and visual weight disagreed, which breaks scan order for
+   sighted readers and makes the document outline misleading.
+   -------------------------------------------------------------------------- */
+
+.ltw-accred-grid .ltw-cred .ltw-cred-title,
+h3.ltw-cred-title {
+  font-family: var(--ltw-font-ui);
+  font-size: var(--ltw-text-h4);          /* 18 -> 21px, above body */
+  font-weight: var(--ltw-weight-semibold);
+  line-height: var(--ltw-leading-normal);
+}
+
+/* The one remaining 12px h2 ("ABOUT LAUNCH TO WELLNESS") is a mega-menu
+   section label inside a Kadence Advanced Heading block. It is deliberately
+   NOT resized here: enlarging it to the h2 scale would break the navigation
+   layout. The defect is semantic, not visual — it should not be a heading at
+   all. See T1 in the template notes below. */
+
+
+/* -----------------------------------------------------------------------------
+   2. HEADING SCALE CONSOLIDATION  (measured)
+   H1 rendered at 3 sizes (10 / 42 / 68px), H2 at 6 (12 / 21 / 32 / 34 / 40 /
+   44px), H3 at 4 (14.5 / 17 / 25 / 27px). One scale, three levels.
+
+   Scoped to content regions so the Kadence header/footer chrome is untouched.
+   -------------------------------------------------------------------------- */
+
+.entry-content h1, .ltw-section h1, [class*="ltw-wp-"] h1 {
+  font-family: var(--ltw-font-display);
+  font-size: var(--ltw-text-h1);
+  line-height: var(--ltw-leading-tight);
+  letter-spacing: var(--ltw-tracking-tight);
+}
+
+.entry-content h2, .ltw-section h2, [class*="ltw-wp-"] h2 {
+  font-family: var(--ltw-font-display);
+  font-size: var(--ltw-text-h2);
+  line-height: var(--ltw-leading-snug);
+  letter-spacing: var(--ltw-tracking-tight);
+}
+
+.entry-content h3, .ltw-section h3, [class*="ltw-wp-"] h3 {
+  font-family: var(--ltw-font-display);
+  font-size: var(--ltw-text-h3);
+  line-height: var(--ltw-leading-snug);
+}
+
+.entry-content h4, .ltw-section h4, [class*="ltw-wp-"] h4 {
+  font-family: var(--ltw-font-ui);
+  font-size: var(--ltw-text-h4);
+  font-weight: var(--ltw-weight-semibold);
+  line-height: var(--ltw-leading-normal);
+}
+
+/* The hero is the one place that earns the display size. */
+.ltw-hero h1, .ltw-hero__title { font-size: var(--ltw-text-display); }
+
+
+/* -----------------------------------------------------------------------------
+   3. SMALL UI TEXT  (measured)
+   76 visible elements render at 12px: 45 tag chips, 15 eyebrows, 16 assorted
+   meta/labels. 12px is legible for a tracked uppercase eyebrow but not for a
+   tag chip or a sentence of meta text — and this site's readers include people
+   in crisis and parents reading on a phone.
+
+   Eyebrows stay small (they carry uppercase + 600 + tracking, which restores
+   legibility). Everything else moves to the 14px floor.
+   -------------------------------------------------------------------------- */
+
+.ltw-help-card__tag,
+.ltw-help-card__label,
+.ltw-program-carousel__meta,
+[class*="__tag"],
+[class*="__chip"],
+[class*="__meta"] {
+  font-size: var(--ltw-text-meta) !important;   /* outranks scoped 12px rules */
+  line-height: var(--ltw-leading-normal);
+}
+
+.ltw-eyebrow, [class*="__eyebrow"], [class*="__kicker"] {
+  font-family: var(--ltw-font-ui);
+  font-size: var(--ltw-text-eyebrow);           /* 13px, tracked + uppercase */
+  font-weight: var(--ltw-weight-semibold);
+  letter-spacing: var(--ltw-tracking-wide);
+  text-transform: uppercase;
+  color: var(--ltw-text-link);
+}
+
+
+/* -----------------------------------------------------------------------------
+   4. ACCENT COLOUR FAILING CONTRAST  (measured)
+   #e8a15b measures 2.17:1 on white, 1.98:1 on ivory, 1.92:1 on cloud,
+   1.94:1 on sky-wash. It passes only on navy (6.69:1). Used as text or an
+   icon on any light ground it is below the AA threshold of 4.5:1.
+
+   Text and icons move to #9a5f22 (5.21:1 on white, 4.62:1 on cloud — the
+   worst case still passes). The orange is kept for fills, rules and
+   decoration, where contrast minimums do not apply.
+   -------------------------------------------------------------------------- */
+
+.ltw-text-accent,
+[class*="__accent-text"] {
+  color: var(--ltw-text-accent);
+}
+
+/* Orange as a button ground demands navy text; white on orange is 2.17:1. */
+.ltw-btn--accent, .ltw-btn--gold, [class*="btn"][class*="accent"] {
+  background: var(--ltw-action-alt-bg);
+  color: var(--ltw-action-alt-text);
+}
+
+/* On a navy ground the orange is correct and stays. */
+.ltw-section--dark .ltw-text-accent,
+[class*="--dark"] [class*="__accent-text"] {
+  color: var(--ltw-orange);
+}
+
+
+/* -----------------------------------------------------------------------------
+   5. TOUCH TARGETS BELOW MINIMUM  (measured)
+   At 390px, 15 non-prose interactive elements render under 44px tall,
+   including the top-bar links "Who We Serve" (81x14), "Referrals" (50x14)
+   and "Families" (44x16). A 14px-tall link is a miss-tap on a phone.
+
+   Padding grows the hit area around the existing text, so the visual design
+   is unchanged. Inline links inside prose are excluded — a 44px box there
+   would wreck the line rhythm, and WCAG 2.2 exempts targets in a sentence.
+   -------------------------------------------------------------------------- */
+
+.site-top-header-wrap a,
+.site-header .header-navigation a,
+.ltw-nav a,
+.ltw-btn,
+.ltw-link,
+.ltw-areas__close,
+.kb-navigation .kb-nav-link-content {
+  min-height: var(--ltw-tap-min);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* The off-canvas trigger renders at 41x41 — just under the minimum. */
+.wp-block-kadence-off-canvas-trigger {
+  min-width: var(--ltw-tap-min);
+  min-height: var(--ltw-tap-min);
+}
+
+/* Carousel dots render at 6x6 — effectively untappable. The dot must stay
+   6px visually, so the hit area is grown with a transparent pseudo-element
+   centred on it rather than by resizing the dot. */
+.ltw-dot {
+  position: relative;
+}
+
+.ltw-dot::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: var(--ltw-tap-min);
+  height: var(--ltw-tap-min);
+  transform: translate(-50%, -50%);
+}
+
+/* The skip link is intentionally 1x1 and visually hidden until focused —
+   it is correct as-is and is deliberately excluded from the rules above. */
+
+p a, li a, .ltw-prose a, [class*="__body"] a {
+  min-height: 0;
+  display: inline;
+}
+
+
+/* -----------------------------------------------------------------------------
+   6. FOCUS VISIBILITY
+   Focus treatment was inconsistent across the 20 hand-written blocks; several
+   set outline:none without a replacement. One visible treatment everywhere.
+   -------------------------------------------------------------------------- */
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--ltw-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--ltw-radius-sm);
+}
+
+
+/* -----------------------------------------------------------------------------
+   7. READING MEASURE  (measured)
+   At 1440px the median line is 62 characters (good) but the longest is 94.
+   Past ~75 the eye loses the line return.
+   -------------------------------------------------------------------------- */
+
+.entry-content p, .entry-content li,
+.ltw-prose p, .ltw-prose li,
+[class*="__body"] p {
+  max-width: var(--ltw-measure);
+}
+
+.ltw-lede, [class*="__lede"] {
+  font-size: var(--ltw-text-lede);
+  line-height: var(--ltw-leading-normal);
+  max-width: var(--ltw-measure-tight);
+}
+
+
+/* -----------------------------------------------------------------------------
+   8. SURFACE CONSISTENCY  (measured)
+   Card corners render at 5 different radii on one page: 0px (139 elements),
+   7px (55), 14px (22), 24px (3), 999px (8). Cards sitting side by side had
+   different corners and different shadow depths (23 distinct box-shadows).
+
+   999px is preserved where it is intentional (pills, index badges); the rest
+   collapse onto two steps.
+   -------------------------------------------------------------------------- */
+
+/* PARTIAL FIX — measured. These rules pull the main card surfaces onto two
+   radius steps, but they do NOT converge the page: measured before and after,
+   the homepage renders 5 distinct card radii either way. What changes is the
+   mix — the stray 24px collapses onto 12px — but ~55 elements whose class
+   merely contains "card" (mostly icon chips at 7px) are styled by nested
+   selectors inside the section blocks that an override layer cannot reach
+   without replicating their nesting.
+
+   Full convergence requires editing the section blocks to reference
+   var(--ltw-radius-*) directly — see "Migration" in design-system/README.md.
+   Do not add more !important here chasing the remainder; fix it at source. */
+.ltw-card,
+.ltw-adm-card,
+.ltw-services-card__article,
+.ltw-program-carousel__card,
+[class*="__card"]:not([class*="__card__"]):not([class*="__card-label"]) {
+  border-radius: var(--ltw-radius-md) !important;
+  box-shadow: var(--ltw-shadow-sm);
+}
+
+/* Overlay layers inside a card must follow the card's corner, or the tint
+   squares off the rounded edge. */
+.ltw-card__tint,
+.ltw-card__grad {
+  border-radius: inherit !important;
+}
+
+.ltw-card__icon,
+[class*="__icon"][class*="card"] {
+  border-radius: var(--ltw-radius-sm) !important;
+}
+
+.ltw-card:hover, [class*="__card"]:hover {
+  box-shadow: var(--ltw-shadow-md);
+  transition: box-shadow var(--ltw-duration-micro) var(--ltw-ease-out);
+}
+
+/* Pills and index badges keep their full round. */
+.ltw-services-card__index,
+[class*="__pill"],
+[class*="__badge"] {
+  border-radius: var(--ltw-radius-round) !important;
+}
+
+
+/* -----------------------------------------------------------------------------
+   9. VERTICAL RHYTHM  (measured)
+   42 distinct spacing values (25 px-based, 17 rem-based) drive section
+   padding, so the gap between sections changes arbitrarily down the page.
+   One fluid step replaces them.
+
+   Scoped to the LTW section wrappers so Kadence rows are left alone.
+   -------------------------------------------------------------------------- */
+
+.ltw-section[data-ltw-self-contained],
+section[class*="ltw-wp-"] {
+  padding-block: var(--ltw-section-y);
+}
+
+
+/* =============================================================================
+   TEMPLATE CHANGES — NOT FIXABLE FROM CSS
+   Recorded here so they are not lost. Detail and rationale in AUDIT.md.
+
+   T1. Two <h1> elements on the homepage. One is the site title in the header
+       rendering at 10px; the hero carries the real <h1>. The header title
+       should be a <p> or <div>, not a heading. Semantics, not styling.
+
+   T2. Mobile header contains exactly one visible control — the hamburger.
+       No logo, no click-to-call, no "Get Help Now". The desktop header has
+       both CTAs. For a treatment centre whose primary conversion is a phone
+       call, a tel: link belongs in the mobile header.
+
+   T3. 28 insurance-carrier logos in the above-the-fold strip carry
+       loading="lazy", so the strip paints empty on first load. Remove the
+       lazy attribute for images above the fold (keep it everywhere else).
+
+   T4. 54 of 97 images have an empty alt attribute, and 28 lack width/height
+       (a layout-shift source). Alt text is a template/media-library fix.
+
+   T5. The header logo is served as a 32x32 crop displayed at 30x30, so it is
+       soft on every 2x display. Upload a 60px+ asset and let WordPress emit
+       a srcset.
+
+   T6. Google Fonts loads Inter, Fraunces and Nunito Sans while the site also
+       self-hosts 34 @font-face rules for Fraunces and Nunito Sans. The two
+       latter families download twice. Inter has no self-hosted face at all,
+       so seven font stacks referencing it depend entirely on that
+       render-blocking third-party request. Drop the Google Fonts link and
+       remove Inter from the stacks (tokens.css already does the latter).
+   ============================================================================= */

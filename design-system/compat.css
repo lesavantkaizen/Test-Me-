@@ -1,0 +1,157 @@
+/* =============================================================================
+   Launch To Wellness — Legacy token compatibility layer
+
+   The live site declares 239 distinct custom properties across 8 competing
+   namespaces (--ltw-*, --o-*, --type-*, --font-*, --blue-*, --dur-*,
+   --radius-*, --s-*). 58 of them are declared more than once with different
+   values, so the same token resolves differently depending on which section
+   block wins the cascade.
+
+   This file repoints every legacy name at its canonical token in tokens.css.
+   Existing markup keeps working unchanged; the drift stops.
+
+   Load AFTER tokens.css and BEFORE any section CSS.
+
+   This is a migration aid, not a permanent layer. As each section block is
+   rewritten to use --ltw-* directly, delete its lines here. When the file is
+   empty, the migration is done.
+   ============================================================================= */
+
+:root {
+  /* ---------------------------------------------------------------------------
+     Drifted colour aliases.
+     Each of these had 2-3 conflicting definitions in the live CSS. The
+     comment records what it actually resolved to, and why the canonical
+     value replaces it.
+     --------------------------------------------------------------------------- */
+
+  /* was #143247 / #0e2c3d / #0f2535 — three "navy"s */
+  --navy:       var(--ltw-navy);
+  --navy2:      var(--ltw-navy);
+  --ltw-navy-2: var(--ltw-navy);
+
+  /* was #18384f / #1d2a35 — two "ink"s */
+  --ink: var(--ltw-ink);
+
+  /* was #2782B2 / #2B74A1 — neither reaches AA on white.
+     #2782B2 measured 4.27:1; the canonical blue is 6.88:1. */
+  --blue: var(--ltw-blue);
+
+  /* was #1F577A / #1e6f99 */
+  --blue-deep: var(--ltw-blue);
+  --ltw-blue-deep: var(--ltw-blue);
+
+  /* was #52636c / #7a92a4 — the latter is 3.24:1 on white and fails AA */
+  --muted: var(--ltw-text-secondary);
+  --body:  var(--ltw-text-primary);
+  --slate: var(--ltw-slate);
+
+  /* Decorative light blues — kept, but never valid for text on light */
+  --blue-soft:      #9bc7df;
+  --ltw-blue-soft:  #9bc7df;
+  --ltw-focus-blue: var(--ltw-border-focus);
+
+  /* Warm accents collapse onto one decorative orange plus one text amber */
+  --gold:            var(--ltw-orange);
+  --ltw-gold:        var(--ltw-orange);
+  --soft-peach:      #f8f0e7;
+  --ltw-activation:  var(--ltw-orange);
+
+  /* Neutral grounds */
+  --cream:            var(--ltw-bg-warm);
+  --ivory:            var(--ltw-ivory);
+  --soft-white:       #fafaf9;
+  --ltw-soft-white:   #fafaf9;
+  --white:            var(--ltw-white);
+  --mist:             var(--ltw-mist);
+  --cloud:            var(--ltw-cloud);
+  --sky-wash:         var(--ltw-sky-wash);
+  --ltw-sky-pale:     #f5fafc;
+  --ltw-selection:    #dceef6;
+
+  /* Status */
+  --ltw-error: var(--ltw-danger);
+
+  /* ---------------------------------------------------------------------------
+     Semantic aliases that previously resolved 2-3 different ways
+     --------------------------------------------------------------------------- */
+  --accent:               var(--ltw-text-link);
+  --ltw-accent:           var(--ltw-text-link);
+  --ltw-body:             var(--ltw-text-primary);
+  --ltw-border:           var(--ltw-border-default);
+  --ltw-border-hover:     var(--ltw-border-focus);
+  --ltw-border-selected:  var(--ltw-border-focus);
+  --ltw-card-surface:     var(--ltw-bg-card);
+  --ltw-disabled-surface: var(--ltw-cloud);
+  --ltw-eyebrow-color:    var(--ltw-text-link);
+
+  --ltw-button-bg:      var(--ltw-action-bg);
+  --ltw-button-text:    var(--ltw-action-text);
+  --ltw-button-hover:   var(--ltw-action-hover);
+  --ltw-button-pressed: var(--ltw-action-pressed);
+
+  /* ---------------------------------------------------------------------------
+     Legacy type namespace (--type-*) -> canonical scale.
+     Note the corrections: --type-eyebrow was 12px and --type-meta 14px with
+     no floor, which is how 10px and 12px body copy entered the page.
+     --------------------------------------------------------------------------- */
+  --type-display:    var(--ltw-text-display);
+  --type-h2:         var(--ltw-text-h2);
+  --type-h3:         var(--ltw-text-h3);
+  --type-card-title: var(--ltw-text-h4);
+  --type-lede:       var(--ltw-text-lede);
+  --type-body:       var(--ltw-text-body);
+  --type-ui:         var(--ltw-text-ui);
+  --type-meta:       var(--ltw-text-meta);
+  --type-eyebrow:    var(--ltw-text-eyebrow);
+
+  /* --ltw-type-* had conflicting definitions: h2 was both 32px and 34px,
+     lede was 1rem, 1.0625rem and a clamp(). All collapse here. */
+  --ltw-type-h1:      var(--ltw-text-h1);
+  --ltw-type-h2:      var(--ltw-text-h2);
+  --ltw-type-h3:      var(--ltw-text-h3);
+  --ltw-type-h4:      var(--ltw-text-h4);
+  --ltw-type-lede:    var(--ltw-text-lede);
+  --ltw-type-body:    var(--ltw-text-body);
+  --ltw-type-card:    var(--ltw-text-body);
+  --ltw-type-ui:      var(--ltw-text-ui);
+  --ltw-type-meta:    var(--ltw-text-meta);
+  --ltw-type-eyebrow: var(--ltw-text-eyebrow);
+
+  /* Font family aliases. --font-ui and --ltw-ui resolved to Inter in several
+     blocks; Inter has no @font-face anywhere on the site. */
+  --font-ui:      var(--ltw-font-ui);
+  --font-display: var(--ltw-font-display);
+  --ltw-ui:       var(--ltw-font-ui);
+  --ltw-display:  var(--ltw-font-display);
+
+  /* ---------------------------------------------------------------------------
+     Legacy spacing / radius / motion namespaces
+     --------------------------------------------------------------------------- */
+  --s-1: var(--ltw-s-1);
+  --s-2: var(--ltw-s-2);
+  --s-3: var(--ltw-s-3);
+  --s-4: var(--ltw-s-4);
+  --s-5: var(--ltw-s-5);
+  --s-6: var(--ltw-s-6);
+
+  --radius-sm:    var(--ltw-radius-sm);
+  --radius-md:    var(--ltw-radius-md);
+  --radius-lg:    var(--ltw-radius-lg);
+  --radius-round: var(--ltw-radius-round);
+
+  /* The --o-* namespace duplicated radius and spacing wholesale */
+  --o-radius-sm:    var(--ltw-radius-sm);
+  --o-radius-md:    var(--ltw-radius-md);
+  --o-radius-lg:    var(--ltw-radius-lg);
+  --o-radius-round: var(--ltw-radius-round);
+
+  --ltw-card-radius:   var(--ltw-radius-md);
+  --ltw-eyebrow-line:  var(--ltw-s-6);
+
+  /* was 180ms / 280ms / 320ms for the same conceptual duration */
+  --dur-fast:           var(--ltw-duration-micro);
+  --dur-base:           var(--ltw-duration-component);
+  --ltw-duration:       var(--ltw-duration-component);
+  --ltw-duration-fast:  var(--ltw-duration-micro);
+}
